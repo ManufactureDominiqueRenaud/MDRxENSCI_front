@@ -46,7 +46,7 @@ export default async function Home() {
 
       {/* ATELIER DE PROJET */}
       <section className="py-[192px] px-[120px] bg-slate-50 text-slate-950 text-center">
-        <h2 className="font-bold text-5xl">L'atelier de projet</h2>
+        <h2 className="font-bold text-5xl">L&apos;atelier de projet</h2>
         <p className="mt-4">
           Manufacture Dominique Renaud et l&apos;ENSCI-Les Ateliers, École
           Nationale Supérieure de Création Industrielle, s&apos;associent autour
@@ -84,9 +84,8 @@ export default async function Home() {
         <div className="w-1/2">
           <div className="bg-slate-950 text-slate-50 p-8 rounded-3xl">
             <p className="font-bold italic text-2xl">
-              « L&apos;innovation est un processus vivant et collectif
-              qu&apos;il est important de ne jamais figer dans des cadres
-              préétablis. »
+              «L&apos;innovation est un processus vivant et collectif qu&apos;il
+              est important de ne jamais figer dans des cadres préétablis.»
             </p>
             <p className="border-l-2 border-slate-50 pl-2 mt-4">
               Dominique Renaud
