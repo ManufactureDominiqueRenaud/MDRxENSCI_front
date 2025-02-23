@@ -12,8 +12,6 @@ import { LucideArrowDown, LucideArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-import Autoplay from "embla-carousel-autoplay";
-
 export default async function Home() {
   return (
     <main className="text-slate-950">
