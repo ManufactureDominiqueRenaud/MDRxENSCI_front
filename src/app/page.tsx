@@ -13,28 +13,42 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default async function Home() {
+  const dataCarousel = [
+    { src: "/carousel/1.jpg", alt: "carousel 1" },
+    { src: "/carousel/2.jpg", alt: "carousel 2" },
+    { src: "/carousel/3.jpg", alt: "carousel 3" },
+    { src: "/carousel/4.jpg", alt: "carousel 4" },
+    { src: "/carousel/5.jpg", alt: "carousel 5" },
+    { src: "/carousel/6.jpg", alt: "carousel 6" },
+    { src: "/carousel/7.jpg", alt: "carousel 7" },
+    { src: "/carousel/8.jpg", alt: "carousel 8" },
+    { src: "/carousel/9.jpg", alt: "carousel 9" },
+  ];
+
   return (
     <main className="text-slate-950">
       {/* HEADER */}
       <header className="fixed z-50 p-8 bg-gradient-to-b from-slate-950/10 to-slate-950/0 w-full flex justify-between items-center">
-        <div className="w-[75px] mix-blend-difference">
+        <div className="w-[50px] lg:w-[75px] mix-blend-difference">
           <Image src={"/logo.svg"} alt="logo" width={100} height={100} />
         </div>
       </header>
 
       {/* HERO HEADER */}
-      <section className="relative h-screen flex flex-col justify-center items-center">
+      <section className="relative h-[80svh] pt-16 lg:h-screen flex flex-col justify-center items-center">
         <div className="relative z-20 flex flex-col items-center">
-          <h1 className="text-6xl text-slate-50 font-bold text-center w-2/3">
+          <h1 className="text-4xl lg:text-6xl text-slate-50 font-bold text-center w-full md:w-2/3">
             Un partenariat d&apos;exception entre design et haute horlogerie
           </h1>
-          <Button variant={"outline"} size={"lg"} className="mt-8">
-            <LucideArrowDown size={24} />
-            Découvrir le projet
-            <LucideArrowDown size={24} />
+          <Button variant={"outline"} className="mt-8" asChild>
+            <Link href={"#discover"}>
+              <LucideArrowDown size={24} />
+              Découvrir le projet
+              <LucideArrowDown size={24} />
+            </Link>
           </Button>
         </div>
-        <div className="block absolute top-0 left-0 w-full h-full bg-black/55 z-10"></div>
+        <div className="block absolute top-0 left-0 w-full h-full bg-black/30 lg:bg-black/55 z-10"></div>
         <Image
           src={"/hero.jpg"}
           alt="hero"
@@ -45,8 +59,12 @@ export default async function Home() {
       </section>
 
       {/* ATELIER DE PROJET */}
-      <section className="py-[192px] px-[120px] bg-slate-50 text-slate-950 text-center">
-        <h2 className="font-bold text-5xl">L&apos;atelier de projet</h2>
+      <section
+        className="py-[150px] lg:py-[192px] px-[20px] md:px-[70px] lg:px-[120px] bg-slate-50 text-slate-950 text-left md:text-center"
+        id="discover">
+        <h2 className="font-bold text-3xl lg:text-5xl">
+          L&apos;atelier de projet
+        </h2>
         <p className="mt-4">
           Manufacture Dominique Renaud et l&apos;ENSCI-Les Ateliers, École
           Nationale Supérieure de Création Industrielle, s&apos;associent autour
@@ -61,18 +79,24 @@ export default async function Home() {
       </section>
 
       {/* COLLAB */}
-      <section className="bg-slate-950 text-slate-50 py-[192px] px-[120px] flex items-center jusitfy-between">
-        <div className="flex items-center gap-12">
-          <Image src={"/logo.svg"} alt="logo" width={100} height={100} />
-          <h2 className="font-bold text-5xl w-3/4">
+      <section className="bg-slate-950 text-slate-50 py-[150px] lg:py-[192px] px-[20px] lg:px-[120px] lg:flex items-center jusitfy-between">
+        <div className="md:flex md:flex-col lg:flex-row items-center gap-12 w-full lg:w-1/2">
+          <Image
+            src={"/logo.svg"}
+            alt="logo"
+            width={100}
+            height={100}
+            className="w-[75px] lg:w-[100px]"
+          />
+          <h2 className="font-bold text-3xl lg:text-5xl w-full lg:w-3/4 mt-4 lg:mt-0 md:text-center lg:text-left">
             Un projet en collaboration avec l&apos;ENSCi
           </h2>
         </div>
-        <div className="flex flex-col items-end gap-4">
-          <Button variant={"outline"} size={"lg"} className="text-slate-950">
+        <div className="flex flex-col items-start md:items-center lg:items-end gap-4 w-full lg:w-1/2 mt-8 lg:mt-0">
+          <Button variant={"outline"} className="text-slate-950">
             Télécharger le communiqué de presse
           </Button>
-          <Button variant={"link"} size={"lg"} className="text-slate-50">
+          <Button variant={"link"} className="text-slate-50">
             Découvrir plus
             <LucideArrowRight size={24} />
           </Button>
@@ -80,14 +104,14 @@ export default async function Home() {
       </section>
 
       {/* Dominique */}
-      <section className="pt-[192px] pb-[96px] px-[120px] flex items-stretch gap-12">
-        <div className="w-1/2">
+      <section className="pt-[150px] pb-[75px] lg:py-[192px] px-[20px] md:px-[70px] lg:px-[120px] lg:flex items-center gap-12">
+        <div className="lg:w-1/2">
           <div className="bg-slate-950 text-slate-50 p-8 rounded-3xl">
-            <p className="font-bold italic text-2xl">
+            <p className="font-bold italic text-xl lg:text-2xl">
               «L&apos;innovation est un processus vivant et collectif qu&apos;il
               est important de ne jamais figer dans des cadres préétablis.»
             </p>
-            <p className="border-l-2 border-slate-50 pl-2 mt-4">
+            <p className="border-l-2 border-slate-50 pl-2 mt-4 text-sm lg:text-base">
               Dominique Renaud
             </p>
           </div>
@@ -102,7 +126,7 @@ export default async function Home() {
             travaillant notamment pour Audemars Piguet, IWC ou encore Breguet.
           </p>
         </div>
-        <div className="w-1/2 overflow-hidden rounded-3xl">
+        <div className="lg:w-1/2 overflow-hidden rounded-3xl mt-8 lg:mt-0">
           <Image
             src={"/dominique.jpg"}
             alt="dominique"
@@ -114,8 +138,8 @@ export default async function Home() {
       </section>
 
       {/* CAROUSEL */}
-      <section className="py-[96px] px-[240px] flex flex-col items-center gap-12">
-        <h2 className="font-bold text-center w-full text-5xl">
+      <section className="py-[150px] lg:py-[192px] px-[20px] md:px-[70px] lg:px-[120px] flex flex-col items-center gap-12">
+        <h2 className="font-bold text-center w-full text-3xl lg:text-5xl px-4">
           Découvrez le projet en photo
         </h2>
         <Carousel
@@ -123,133 +147,32 @@ export default async function Home() {
             align: "center",
             loop: true,
           }}>
-          <CarouselContent>
-            <CarouselItem>
-              <div className="w-full h-full flex flex-col items-center justify-center">
-                <div className="w-3/4 max-h-[70svh]">
-                  <Image
-                    src={"/carousel/1.jpg"}
-                    alt="carousel"
-                    className="w-full h-full object-contain"
-                    width={1920}
-                    height={1080}
-                  />
+          <CarouselContent className="cursor-grab">
+            {dataCarousel.map((image, index) => (
+              <CarouselItem key={index}>
+                <div className="w-full h-full flex flex-col items-center justify-center">
+                  <div className="w-3/4 max-h-[70svh]">
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      className="w-full h-full object-contain"
+                      width={1920}
+                      height={1080}
+                    />
+                  </div>
                 </div>
-              </div>
-            </CarouselItem>
-            <CarouselItem>
-              <div className="w-full h-full flex flex-col items-center justify-center">
-                <div className="w-3/4 max-h-[70svh]">
-                  <Image
-                    src={"/carousel/2.jpg"}
-                    alt="carousel"
-                    className="w-full h-full object-contain"
-                    width={1920}
-                    height={1080}
-                  />
-                </div>
-              </div>
-            </CarouselItem>
-            <CarouselItem>
-              <div className="w-full h-full flex flex-col items-center justify-center">
-                <div className="w-3/4 max-h-[70svh]">
-                  <Image
-                    src={"/carousel/3.jpg"}
-                    alt="carousel"
-                    className="w-full h-full object-contain"
-                    width={1920}
-                    height={1080}
-                  />
-                </div>
-              </div>
-            </CarouselItem>
-            <CarouselItem>
-              <div className="w-full h-full flex flex-col items-center justify-center">
-                <div className="w-3/4 max-h-[70svh]">
-                  <Image
-                    src={"/carousel/4.jpg"}
-                    alt="carousel"
-                    className="w-full h-full object-contain"
-                    width={1920}
-                    height={1080}
-                  />
-                </div>
-              </div>
-            </CarouselItem>
-            <CarouselItem>
-              <div className="w-full h-full flex flex-col items-center justify-center">
-                <div className="w-3/4 max-h-[70svh]">
-                  <Image
-                    src={"/carousel/5.jpg"}
-                    alt="carousel"
-                    className="w-full h-full object-contain"
-                    width={1920}
-                    height={1080}
-                  />
-                </div>
-              </div>
-            </CarouselItem>
-            <CarouselItem>
-              <div className="w-full h-full flex flex-col items-center justify-center">
-                <div className="w-3/4 max-h-[70svh]">
-                  <Image
-                    src={"/carousel/6.jpg"}
-                    alt="carousel"
-                    className="w-full h-full object-contain"
-                    width={1920}
-                    height={1080}
-                  />
-                </div>
-              </div>
-            </CarouselItem>
-            <CarouselItem>
-              <div className="w-full h-full flex flex-col items-center justify-center">
-                <div className="w-3/4 max-h-[70svh]">
-                  <Image
-                    src={"/carousel/7.jpg"}
-                    alt="carousel"
-                    className="w-full h-full object-contain"
-                    width={1920}
-                    height={1080}
-                  />
-                </div>
-              </div>
-            </CarouselItem>
-            <CarouselItem>
-              <div className="w-full h-full flex flex-col items-center justify-center">
-                <div className="w-3/4 max-h-[70svh]">
-                  <Image
-                    src={"/carousel/8.jpg"}
-                    alt="carousel"
-                    className="w-full h-full object-contain"
-                    width={1920}
-                    height={1080}
-                  />
-                </div>
-              </div>
-            </CarouselItem>
-            <CarouselItem>
-              <div className="w-full h-full flex flex-col items-center justify-center">
-                <div className="w-3/4 max-h-[70svh]">
-                  <Image
-                    src={"/carousel/9.jpg"}
-                    alt="carousel"
-                    className="w-full h-full object-contain"
-                    width={1920}
-                    height={1080}
-                  />
-                </div>
-              </div>
-            </CarouselItem>
+              </CarouselItem>
+            ))}
           </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
+          ;
+          <CarouselPrevious className="left-0" />
+          <CarouselNext className="right-0" />
         </Carousel>
       </section>
 
-      {/* A propos de MDR */}
-      <section className="pb-[192px] pt-[96px] px-[120px] flex items-center gap-12">
-        <div className="w-1/2 overflow-hidden rounded-3xl">
+      {/* A propos de lgR */}
+      <section className="py-[150px] lg:py-[192px] px-[20px] md:px-[70px] lg:px-[120px] lg:flex items-center gap-12">
+        <div className="lg:w-1/2 overflow-hidden rounded-3xl">
           <Image
             src={"/a-propos_mdr.webp"}
             alt="Dominique Renaud et Julien Tixier de Manufacture Dominique Renaud se font face dans leur atelier"
@@ -258,8 +181,8 @@ export default async function Home() {
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="w-1/2">
-          <h2 className="font-bold text-5xl">
+        <div className="lg:w-1/2 mt-8 lg:mt-0">
+          <h2 className="font-bold text-3xl lg:text-5xl">
             À propos de Manufacture Dominique Renaud
           </h2>
           <p className="mt-8">
@@ -280,9 +203,9 @@ export default async function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer className="p-[40px]">
-        <div className="bg-slate-950 text-slate-50 flex items-center gap-16 px-[80px] py-16 rounded-3xl">
-          <div className="flex flex-col gap-8 w-1/2">
+      <footer className="p-[20px] lg:p-[40px]">
+        <div className="bg-slate-950 text-slate-50 lg:flex items-center gap-16 p-[40px] md:px-[70px] py-16 rounded-3xl">
+          <div className="flex flex-col gap-8 lg:w-1/2">
             <Image
               src={"/logo.svg"}
               alt="logo"
@@ -296,7 +219,7 @@ export default async function Home() {
               info@dominiquerenaud.com
             </Link>
           </div>
-          <div className="w-1/2">
+          <div className="lg:w-1/2 mt-8 lg:mt-0">
             <div>
               <p className="text-sm text-slate-50/50">
                 Manufacture Dominique Renaud
@@ -330,9 +253,9 @@ export default async function Home() {
                 </ul>
               </nav>
             </div>
-            <div className="flex items-center gap-4 mt-8">
+            <div className="lg:flex items-center gap-4 mt-8">
               <nav>
-                <ul className="flex items-center gap-4">
+                <ul className="lg:flex items-center gap-4 mb-4 lg:mb-0">
                   <li>
                     <Link
                       href={"#"}
