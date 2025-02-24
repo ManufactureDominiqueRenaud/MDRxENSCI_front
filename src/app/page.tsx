@@ -26,9 +26,9 @@ export default async function Home() {
   ];
 
   return (
-    <main className="text-slate-950">
+    <main className="text-[#253031]">
       {/* HEADER */}
-      <header className="fixed z-50 p-8 bg-gradient-to-b from-slate-950/10 to-slate-950/0 w-full flex justify-between items-center">
+      <header className="fixed z-50 p-8 bg-gradient-to-b from-[#253031]/10 to-[#253031]/0 w-full flex justify-between items-center">
         <div className="w-[50px] lg:w-[75px] mix-blend-difference">
           <Image src={"/logo.svg"} alt="logo" width={100} height={100} />
         </div>
@@ -37,10 +37,10 @@ export default async function Home() {
       {/* HERO HEADER */}
       <section className="relative h-[80svh] pt-16 lg:h-screen flex flex-col justify-center items-center">
         <div className="relative z-20 flex flex-col items-center">
-          <h1 className="text-4xl lg:text-6xl text-slate-50 font-bold text-center w-full md:w-2/3">
+          <h1 className="text-4xl lg:text-6xl text-[#CDDBDE] font-bold text-center w-full md:w-2/3">
             Un partenariat d&apos;exception entre design et haute horlogerie
           </h1>
-          <Button variant={"outline"} className="mt-8" asChild>
+          <Button variant={"outlineCustom"} className="mt-8" asChild>
             <Link href={"#discover"}>
               <LucideArrowDown size={24} />
               Découvrir le projet
@@ -60,7 +60,7 @@ export default async function Home() {
 
       {/* ATELIER DE PROJET */}
       <section
-        className="py-[150px] lg:py-[192px] px-[20px] md:px-[70px] lg:px-[120px] bg-slate-50 text-slate-950 text-left md:text-center"
+        className="py-[150px] lg:py-[192px] px-[20px] md:px-[70px] lg:px-[120px] bg-[#CDDBDE] text-[#253031] text-left md:text-center"
         id="discover">
         <h2 className="font-bold text-3xl lg:text-5xl">
           L&apos;atelier de projet
@@ -79,7 +79,7 @@ export default async function Home() {
       </section>
 
       {/* COLLAB */}
-      <section className="bg-slate-950 text-slate-50 py-[150px] lg:py-[192px] px-[20px] lg:px-[120px] lg:flex items-center jusitfy-between">
+      <section className="bg-[#253031] text-[#CDDBDE] py-[150px] lg:py-[192px] px-[20px] lg:px-[120px] lg:flex items-center jusitfy-between">
         <div className="md:flex md:flex-col lg:flex-row items-center gap-12 w-full lg:w-1/2">
           <Image
             src={"/logo.svg"}
@@ -93,10 +93,10 @@ export default async function Home() {
           </h2>
         </div>
         <div className="flex flex-col items-start md:items-center lg:items-end gap-4 w-full lg:w-1/2 mt-8 lg:mt-0">
-          <Button variant={"outline"} className="text-slate-950">
+          <Button variant={"outlineCustom"} className="text-[#253031]">
             Télécharger le communiqué de presse
           </Button>
-          <Button variant={"link"} className="text-slate-50">
+          <Button variant={"link"} className="text-[#CDDBDE]">
             Découvrir plus
             <LucideArrowRight size={24} />
           </Button>
@@ -106,12 +106,12 @@ export default async function Home() {
       {/* Dominique */}
       <section className="pt-[150px] pb-[75px] lg:py-[192px] px-[20px] md:px-[70px] lg:px-[120px] lg:flex items-center gap-12">
         <div className="lg:w-1/2">
-          <div className="bg-slate-950 text-slate-50 p-8 rounded-3xl">
+          <div className="bg-[#253031] text-[#CDDBDE] p-8 rounded-3xl">
             <p className="font-bold italic text-xl lg:text-2xl">
               «L&apos;innovation est un processus vivant et collectif qu&apos;il
               est important de ne jamais figer dans des cadres préétablis.»
             </p>
-            <p className="border-l-2 border-slate-50 pl-2 mt-4 text-sm lg:text-base">
+            <p className="border-l-2 border-[#CDDBDE] pl-2 mt-4 text-sm lg:text-base">
               Dominique Renaud
             </p>
           </div>
@@ -204,7 +204,7 @@ export default async function Home() {
 
       {/* FOOTER */}
       <footer className="p-[20px] lg:p-[40px]">
-        <div className="bg-slate-950 text-slate-50 lg:flex items-center gap-16 p-[40px] md:px-[70px] py-16 rounded-3xl">
+        <div className="bg-[#253031] text-[#CDDBDE] lg:flex items-center gap-16 p-[40px] md:px-[70px] py-16 rounded-3xl">
           <div className="flex flex-col gap-8 lg:w-1/2">
             <Image
               src={"/logo.svg"}
@@ -215,13 +215,13 @@ export default async function Home() {
             />
             <Link
               href="mailto:info@dominiquerenaud.com"
-              className="text-slate-50/50 text-sm hover:underline transition">
+              className="text-[#CDDBDE]/50 text-sm hover:underline transition">
               info@dominiquerenaud.com
             </Link>
           </div>
           <div className="lg:w-1/2 mt-8 lg:mt-0">
             <div>
-              <p className="text-sm text-slate-50/50">
+              <p className="text-sm text-[#CDDBDE]/50">
                 Manufacture Dominique Renaud
               </p>
               <nav>
@@ -230,7 +230,7 @@ export default async function Home() {
                     <Link
                       href={"https://www.renaudtixier.com/fr/contact"}
                       title=""
-                      className="text-slate-50 text-sm hover:underline transition">
+                      className="text-[#CDDBDE] text-sm hover:underline transition">
                       Contact
                     </Link>
                   </li>
@@ -238,7 +238,7 @@ export default async function Home() {
                     <Link
                       href={"https://www.instagram.com/renaud.tixier/"}
                       title=""
-                      className="text-slate-50 text-sm hover:underline transition">
+                      className="text-[#CDDBDE] text-sm hover:underline transition">
                       Instagram
                     </Link>
                   </li>
@@ -246,7 +246,7 @@ export default async function Home() {
                     <Link
                       href={"https://www.renaudtixier.com/"}
                       title=""
-                      className="text-slate-50 text-sm hover:underline transition">
+                      className="text-[#CDDBDE] text-sm hover:underline transition">
                       Site web
                     </Link>
                   </li>
@@ -260,7 +260,7 @@ export default async function Home() {
                     <Link
                       href={"#"}
                       title=""
-                      className="text-slate-50/50 text-sm hover:underline transition">
+                      className="text-[#CDDBDE]/50 text-sm hover:underline transition">
                       Mentions Légales
                     </Link>
                   </li>
@@ -268,13 +268,13 @@ export default async function Home() {
                     <Link
                       href={"#"}
                       title=""
-                      className="text-slate-50/50 text-sm hover:underline transition">
+                      className="text-[#CDDBDE]/50 text-sm hover:underline transition">
                       Politique de Cookies
                     </Link>
                   </li>
                 </ul>
               </nav>
-              <span className="text-sm text-slate-50/50">
+              <span className="text-sm text-[#CDDBDE]/50">
                 © 2025 — Maison Dominique Renaud, ENSCI
               </span>
             </div>
