@@ -6,6 +6,19 @@
   scroll-behavior: smooth;
 }
 
+/* Masquer la scrollbar sur Webkit (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  display: none;
+}
+/* Masquer la scrollbar sur Firefox */
+html {
+  scrollbar-width: none;
+}
+/* Masquer la scrollbar sur IE/Edge */
+body {
+  -ms-overflow-style: none;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
