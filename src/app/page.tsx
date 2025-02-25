@@ -1,5 +1,6 @@
 "use server";
 
+import { ScrollProgress } from "@/components/magicui/scroll-progress";
 import { Button } from "@/components/ui/button";
 import {
   Carousel,
@@ -26,18 +27,32 @@ export default async function Home() {
   ];
 
   return (
-    <main className="text-[#253031]">
+    <main className="text-[#253031] relative">
+      <ScrollProgress className="top-0" />
       {/* HEADER */}
       <header className="fixed z-50 p-8 bg-gradient-to-b from-[#253031]/10 to-[#253031]/0 w-full flex justify-between items-center">
-        <div className="w-[50px] lg:w-[75px] mix-blend-difference">
-          <Image src={"/logo.svg"} alt="logo" width={100} height={100} />
+        <div className="w-[50px] lg:w-[75px]">
+          <Image
+            src={"/logo-mdr.svg"}
+            alt="logo"
+            width={100}
+            height={100}
+            style={{ mixBlendMode: "difference" }}
+          />
         </div>
       </header>
 
       {/* HERO HEADER */}
       <section className="relative h-[80svh] pt-16 lg:h-screen flex flex-col justify-center items-center">
         <div className="relative z-20 flex flex-col items-center">
-          <h1 className="text-4xl lg:text-6xl text-[#CDDBDE] font-bold text-center w-full md:w-2/3">
+          <Image
+            src={"/logo-horizontal.svg"}
+            alt="logo"
+            width={500}
+            height={200}
+            className="w-48 lg:w-64 mb-8"
+          />
+          <h1 className="text-4xl lg:text-6xl text-[#CDDBDE] font-bold text-center w-full md:w-2/3 text-marcellus">
             Un partenariat d&apos;exception entre design et haute horlogerie
           </h1>
           <Button variant={"outlineCustom"} className="mt-8" asChild>
@@ -62,10 +77,10 @@ export default async function Home() {
       <section
         className="py-[150px] lg:py-[192px] px-[20px] md:px-[70px] lg:px-[120px] bg-[#CDDBDE] text-[#253031] text-left md:text-center"
         id="discover">
-        <h2 className="font-bold text-3xl lg:text-5xl">
+        <h2 className="font-bold text-3xl lg:text-5xl text-marcellus">
           L&apos;atelier de projet
         </h2>
-        <p className="mt-4">
+        <p className="mt-4 font-serif-p">
           Manufacture Dominique Renaud et l&apos;ENSCI-Les Ateliers, École
           Nationale Supérieure de Création Industrielle, s&apos;associent autour
           d&apos;un atelier de projet sur la création horlogère. Pendant quatre
@@ -80,19 +95,19 @@ export default async function Home() {
 
       {/* COLLAB */}
       <section className="bg-[#253031] text-[#CDDBDE] py-[150px] lg:py-[192px] px-[20px] lg:px-[120px] lg:flex items-center jusitfy-between">
-        <div className="md:flex md:flex-col lg:flex-row items-center gap-12 w-full lg:w-1/2">
+        <div className="w-full lg:w-3/4">
           <Image
-            src={"/logo.svg"}
+            src={"/logo-horizontal.svg"}
             alt="logo"
             width={100}
             height={100}
-            className="w-[75px] lg:w-[100px]"
+            className="w-24 lg:w-48 mb-8"
           />
-          <h2 className="font-bold text-3xl lg:text-5xl w-full lg:w-3/4 mt-4 lg:mt-0 md:text-center lg:text-left">
+          <h2 className="font-bold text-3xl lg:text-5xl w-full lg:w-3/4 mt-4 lg:mt-0 md:text-center lg:text-left lg:text-balance text-marcellus">
             Un projet en collaboration avec l&apos;ENSCi
           </h2>
         </div>
-        <div className="flex flex-col items-start md:items-center lg:items-end gap-4 w-full lg:w-1/2 mt-8 lg:mt-0">
+        <div className="flex flex-col items-start md:items-center lg:items-end gap-4 w-full lg:w-1/4 mt-8 lg:mt-0">
           <Button variant={"outlineCustom"} className="text-[#253031]">
             Télécharger le communiqué de presse
           </Button>
@@ -107,7 +122,7 @@ export default async function Home() {
       <section className="pt-[150px] pb-[75px] lg:py-[192px] px-[20px] md:px-[70px] lg:px-[120px] lg:flex items-center gap-12">
         <div className="lg:w-1/2">
           <div className="bg-[#253031] text-[#CDDBDE] p-8 rounded-3xl">
-            <p className="font-bold italic text-xl lg:text-2xl">
+            <p className="font-bold italic text-xl lg:text-2xl text-marcellus">
               «L&apos;innovation est un processus vivant et collectif qu&apos;il
               est important de ne jamais figer dans des cadres préétablis.»
             </p>
@@ -139,7 +154,7 @@ export default async function Home() {
 
       {/* CAROUSEL */}
       <section className="py-[150px] lg:py-[192px] px-[20px] md:px-[70px] lg:px-[120px] flex flex-col items-center gap-12">
-        <h2 className="font-bold text-center w-full text-3xl lg:text-5xl px-4">
+        <h2 className="font-bold text-center w-full text-3xl lg:text-5xl px-4 text-marcellus">
           Découvrez le projet en photo
         </h2>
         <Carousel
@@ -182,7 +197,7 @@ export default async function Home() {
           />
         </div>
         <div className="lg:w-1/2 mt-8 lg:mt-0">
-          <h2 className="font-bold text-3xl lg:text-5xl">
+          <h2 className="font-bold text-3xl lg:text-5xl text-balance text-marcellus">
             À propos de Manufacture Dominique Renaud
           </h2>
           <p className="mt-8">
@@ -207,11 +222,11 @@ export default async function Home() {
         <div className="bg-[#253031] text-[#CDDBDE] lg:flex items-center gap-16 p-[40px] md:px-[70px] py-16 rounded-3xl">
           <div className="flex flex-col gap-8 lg:w-1/2">
             <Image
-              src={"/logo.svg"}
+              src={"/logo-horizontal.svg"}
               alt="logo"
               width={100}
               height={100}
-              className="w-[75px]"
+              className="w-48"
             />
             <Link
               href="mailto:info@dominiquerenaud.com"
