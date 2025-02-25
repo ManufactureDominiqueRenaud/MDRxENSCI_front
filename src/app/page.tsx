@@ -30,7 +30,7 @@ export default async function Home() {
     <main className="text-[#253031] relative">
       <ScrollProgress className="top-0" />
       {/* HEADER */}
-      {/* <header className="fixed z-50 p-8 bg-gradient-to-b from-[#253031]/10 to-[#253031]/0 w-full flex justify-between items-center">
+      <header className="fixed z-50 p-8 bg-gradient-to-b from-[#253031]/10 to-[#253031]/0 w-full flex justify-between items-center">
         <div className="w-[50px] lg:w-[75px]">
           <Image
             src={"/logo-mdr.svg"}
@@ -40,7 +40,7 @@ export default async function Home() {
             style={{ mixBlendMode: "difference" }}
           />
         </div>
-      </header> */}
+      </header>
 
       {/* HERO HEADER */}
       <section className="relative h-[80svh] pt-16 lg:h-screen flex flex-col justify-center items-center">
