@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Manrope } from "next/font/google";
 import "./globals.css";
-import ReturnToTop from "@/components/ReturnToTop";
+import ReturnToTop from "@/components/return-to-top";
 
-const inter = Inter({
+const manrope = Manrope({
   weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
 });
@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased relative`}>
+      <body className={`${manrope.className} antialiased relative`}>
         <ReturnToTop />
         {children}
       </body>
