@@ -52,7 +52,7 @@ export default async function Home() {
             height={200}
             className="w-48 lg:w-64 mb-8"
           />
-          <h1 className="text-4xl lg:text-6xl text-[#CDDBDE] font-bold text-center w-full md:w-2/3">
+          <h1 className="text-4xl lg:text-6xl text-[#CDDBDE] font-bold text-center w-full md:w-2/3 text-marcellus">
             Un partenariat d&apos;exception entre design et haute horlogerie
           </h1>
           <Button variant={"outlineCustom"} className="mt-8" asChild>
@@ -77,7 +77,7 @@ export default async function Home() {
       <section
         className="py-[150px] lg:py-[192px] px-[20px] md:px-[70px] lg:px-[120px] bg-[#CDDBDE] text-[#253031] text-left md:text-center"
         id="discover">
-        <h2 className="font-bold text-3xl lg:text-5xl">
+        <h2 className="font-bold text-3xl lg:text-5xl text-marcellus">
           L&apos;atelier de projet
         </h2>
         <p className="mt-4 font-serif-p">
@@ -103,7 +103,7 @@ export default async function Home() {
             height={100}
             className="w-24 lg:w-48 mb-8"
           />
-          <h2 className="font-bold text-3xl lg:text-5xl w-full lg:w-3/4 mt-4 lg:mt-0 md:text-center lg:text-left lg:text-balance">
+          <h2 className="font-bold text-3xl lg:text-5xl w-full lg:w-3/4 mt-4 lg:mt-0 md:text-center lg:text-left lg:text-balance text-marcellus">
             Un projet en collaboration avec l&apos;ENSCi
           </h2>
         </div>
@@ -122,7 +122,7 @@ export default async function Home() {
       <section className="pt-[150px] pb-[75px] lg:py-[192px] px-[20px] md:px-[70px] lg:px-[120px] lg:flex items-center gap-12">
         <div className="lg:w-1/2">
           <div className="bg-[#253031] text-[#CDDBDE] p-8 rounded-3xl">
-            <p className="font-bold italic text-xl lg:text-2xl">
+            <p className="font-bold italic text-xl lg:text-2xl text-marcellus">
               «L&apos;innovation est un processus vivant et collectif qu&apos;il
               est important de ne jamais figer dans des cadres préétablis.»
             </p>
@@ -154,7 +154,7 @@ export default async function Home() {
 
       {/* CAROUSEL */}
       <section className="py-[150px] lg:py-[192px] px-[20px] md:px-[70px] lg:px-[120px] flex flex-col items-center gap-12">
-        <h2 className="font-bold text-center w-full text-3xl lg:text-5xl px-4">
+        <h2 className="font-bold text-center w-full text-3xl lg:text-5xl px-4 text-marcellus">
           Découvrez le projet en photo
         </h2>
         <Carousel
@@ -197,7 +197,7 @@ export default async function Home() {
           />
         </div>
         <div className="lg:w-1/2 mt-8 lg:mt-0">
-          <h2 className="font-bold text-3xl lg:text-5xl">
+          <h2 className="font-bold text-3xl lg:text-5xl text-balance text-marcellus">
             À propos de Manufacture Dominique Renaud
           </h2>
           <p className="mt-8">
