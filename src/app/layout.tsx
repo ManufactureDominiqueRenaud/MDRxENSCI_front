@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import "./globals.css";
 import ReturnToTop from "@/components/return-to-top";
+import Maintenance from "@/components/sections/maintenance";
 
 const manrope = Manrope({
   weight: ["400", "500", "600", "700"],
@@ -22,7 +23,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${manrope.className} antialiased relative`}>
         <ReturnToTop />
-        {children}
+        <Maintenance />
+        {/* {children} */}
       </body>
     </html>
   );
