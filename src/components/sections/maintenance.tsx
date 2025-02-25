@@ -15,7 +15,9 @@ function Maintenance() {
       </p>
       <div>
         <Button variant={"outline"} size={"lg"} asChild>
-          <Link href={"https://www.renaudtixier.com"}>Visit RT's website</Link>
+          <Link href={"https://www.renaudtixier.com"}>
+            Visit RT&apos;s website
+          </Link>
         </Button>
       </div>
     </div>
