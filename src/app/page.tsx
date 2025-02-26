@@ -93,12 +93,21 @@ export default async function Home() {
           </h2>
         </div>
         <div className="flex flex-col items-start md:items-center lg:items-end gap-4 w-full lg:w-1/4 mt-8 lg:mt-0">
-          <Button variant={"outlineCustom"} className="text-[#253031]">
-            Télécharger le communiqué de presse
+          <Button variant={"outlineCustom"} className="text-[#253031]" asChild>
+            <Link
+              href={
+                "https://tekpzijxcpujrulsvtci.supabase.co/storage/v1/object/public/supabase/files/24.11.14%20-%20ENSCI%20x%20Manufacture%20Dominique%20Renaud%20-%20ENG.pdf"
+              }
+              target="_blank"
+              title="Télécharger le communiqué de presse">
+              Télécharger le communiqué de presse
+            </Link>
           </Button>
-          <Button variant={"link"} className="text-[#CDDBDE]">
-            Découvrir plus
-            <LucideArrowRight size={24} />
+          <Button variant={"link"} className="text-[#CDDBDE]" asChild>
+            <Link href={"https://www.ensci.com/"} target="_blank">
+              Découvrir plus
+              <LucideArrowRight size={24} />
+            </Link>
           </Button>
         </div>
       </section>
@@ -227,7 +236,8 @@ export default async function Home() {
                   <li>
                     <Link
                       href={"https://www.renaudtixier.com/fr/contact"}
-                      title=""
+                      target="_blank"
+                      title="Contactez-nous"
                       className="text-[#CDDBDE] text-sm hover:underline transition">
                       Contact
                     </Link>
@@ -235,7 +245,8 @@ export default async function Home() {
                   <li>
                     <Link
                       href={"https://www.instagram.com/renaud.tixier/"}
-                      title=""
+                      target="_blank"
+                      title="Accédez à notre Instagram"
                       className="text-[#CDDBDE] text-sm hover:underline transition">
                       Instagram
                     </Link>
@@ -243,7 +254,8 @@ export default async function Home() {
                   <li>
                     <Link
                       href={"https://www.renaudtixier.com/"}
-                      title=""
+                      target="_blank"
+                      title="Visitez le site web de Renaud Tixier"
                       className="text-[#CDDBDE] text-sm hover:underline transition">
                       Site web
                     </Link>
@@ -256,16 +268,18 @@ export default async function Home() {
                 <ul className="lg:flex items-center gap-4 mb-4 lg:mb-0">
                   <li>
                     <Link
-                      href={"#"}
-                      title=""
+                      href={"https://www.renaudtixier.com/legal"}
+                      title="Mentions Légales"
+                      target="_blank"
                       className="text-[#CDDBDE]/50 text-sm hover:underline transition">
                       Mentions Légales
                     </Link>
                   </li>
                   <li>
                     <Link
-                      href={"#"}
-                      title=""
+                      href={"https://www.renaudtixier.com/legal"}
+                      title="Politique de Cookies"
+                      target="_blank"
                       className="text-[#CDDBDE]/50 text-sm hover:underline transition">
                       Politique de Cookies
                     </Link>
