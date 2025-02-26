@@ -1,6 +1,5 @@
 "use server";
 
-import { ScrollProgress } from "@/components/magicui/scroll-progress";
 import { Button } from "@/components/ui/button";
 import {
   Carousel,
@@ -27,23 +26,9 @@ export default async function Home() {
   ];
 
   return (
-    <main className="text-[#253031] relative">
-      <ScrollProgress className="top-0" />
-      {/* HEADER */}
-      <header className="fixed z-50 p-8 bg-gradient-to-b from-[#253031]/10 to-[#253031]/0 w-full flex justify-between items-center">
-        <div className="w-[50px] lg:w-[75px]">
-          <Image
-            src={"/logo-mdr.svg"}
-            alt="logo"
-            width={100}
-            height={100}
-            style={{ mixBlendMode: "difference" }}
-          />
-        </div>
-      </header>
-
+    <main className="text-[#253031] bg-[#CDDBDE]">
       {/* HERO HEADER */}
-      <section className="relative h-[80svh] pt-16 lg:h-screen flex flex-col justify-center items-center">
+      <section className="relative h-screen pt-8 flex flex-col justify-center items-center">
         <div className="relative z-20 flex flex-col items-center">
           <Image
             src={"/logo-horizontal.svg"}
@@ -63,9 +48,9 @@ export default async function Home() {
             </Link>
           </Button>
         </div>
-        <div className="block absolute top-0 left-0 w-full h-full bg-black/30 lg:bg-black/55 z-10"></div>
+        <div className="block absolute top-0 left-0 w-full h-full bg-black/65 lg:bg-black/65 z-10"></div>
         <Image
-          src={"/hero.jpg"}
+          src={"/hero.jpeg"}
           alt="hero"
           width={1920}
           height={1080}
@@ -121,15 +106,13 @@ export default async function Home() {
       {/* Dominique */}
       <section className="pt-[150px] pb-[75px] lg:py-[192px] px-[20px] md:px-[70px] lg:px-[120px] lg:flex items-center gap-12">
         <div className="lg:w-1/2">
-          <div className="bg-[#253031] text-[#CDDBDE] p-8 rounded-3xl">
-            <p className="font-bold italic text-xl lg:text-2xl text-marcellus">
-              «L&apos;innovation est un processus vivant et collectif qu&apos;il
-              est important de ne jamais figer dans des cadres préétablis.»
-            </p>
-            <p className="border-l-2 border-[#CDDBDE] pl-2 mt-4 text-sm lg:text-base">
-              Dominique Renaud
-            </p>
-          </div>
+          <p className="font-bold italic text-xl lg:text-2xl text-marcellus">
+            «L&apos;innovation est un processus vivant et collectif qu&apos;il
+            est important de ne jamais figer dans des cadres préétablis.»
+          </p>
+          <p className="border-l-2 border-[#CDDBDE] pl-2 mt-4 text-sm lg:text-base">
+            Dominique Renaud
+          </p>
           <p className="mt-8">
             Tout comme les élèves sont encouragés à explorer sans contraintes,
             Dominique Renaud a toujours considéré les chemins inexplorés comme
