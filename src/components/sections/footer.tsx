@@ -14,11 +14,6 @@ function Footer() {
             height={100}
             className="w-48"
           />
-          <Link
-            href="mailto:info@dominiquerenaud.com"
-            className="text-[#CDDBDE]/50 text-sm hover:underline transition">
-            info@dominiquerenaud.com
-          </Link>
         </div>
         <div className="lg:w-1/2 mt-8 lg:mt-0">
           <div>
@@ -43,6 +38,15 @@ function Footer() {
                     title="Contactez notre service de presse"
                     className="text-[#CDDBDE] text-sm hover:underline transition">
                     Presse
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href={"mailto:info@dominiquerenaud.ch"}
+                    target="_blank"
+                    title="Contactez nous"
+                    className="text-[#CDDBDE] text-sm hover:underline transition">
+                    Contact
                   </Link>
                 </li>
               </ul>
