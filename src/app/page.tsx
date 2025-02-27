@@ -26,7 +26,7 @@ export default async function Home() {
   ];
 
   return (
-    <main className="text-[#253031] bg-[#CDDBDE]">
+    <main>
       {/* HERO HEADER */}
       <section className="relative h-screen pt-8 flex flex-col justify-center items-center">
         <div className="relative z-20 flex flex-col items-center">
@@ -147,7 +147,7 @@ export default async function Home() {
       {/* CAROUSEL */}
       <section className="py-[150px] lg:py-[192px] px-[20px] md:px-[70px] lg:px-[120px] flex flex-col items-center gap-12">
         <h2 className="font-bold text-center w-full text-3xl lg:text-5xl px-4 text-marcellus">
-          Découvrez le projet en photo
+          Découvrez le partenariat en photo
         </h2>
         <Carousel
           opts={{
@@ -208,91 +208,6 @@ export default async function Home() {
           </p>
         </div>
       </section>
-
-      {/* FOOTER */}
-      <footer className="p-[20px] lg:p-[40px]">
-        <div className="bg-[#253031] text-[#CDDBDE] lg:flex items-center gap-16 p-[40px] md:px-[70px] py-16 rounded-3xl">
-          <div className="flex flex-col gap-8 lg:w-1/2">
-            <Image
-              src={"/logo-horizontal.svg"}
-              alt="logo"
-              width={100}
-              height={100}
-              className="w-48"
-            />
-            <Link
-              href="mailto:info@dominiquerenaud.com"
-              className="text-[#CDDBDE]/50 text-sm hover:underline transition">
-              info@dominiquerenaud.com
-            </Link>
-          </div>
-          <div className="lg:w-1/2 mt-8 lg:mt-0">
-            <div>
-              <p className="text-sm text-[#CDDBDE]/50">
-                Manufacture Dominique Renaud
-              </p>
-              <nav>
-                <ul className="flex items-center gap-4">
-                  <li>
-                    <Link
-                      href={"https://www.renaudtixier.com/fr/contact"}
-                      target="_blank"
-                      title="Contactez-nous"
-                      className="text-[#CDDBDE] text-sm hover:underline transition">
-                      Contact
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href={"https://www.instagram.com/renaud.tixier/"}
-                      target="_blank"
-                      title="Accédez à notre Instagram"
-                      className="text-[#CDDBDE] text-sm hover:underline transition">
-                      Instagram
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href={"https://www.renaudtixier.com/"}
-                      target="_blank"
-                      title="Visitez le site web de Renaud Tixier"
-                      className="text-[#CDDBDE] text-sm hover:underline transition">
-                      Site web
-                    </Link>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-            <div className="lg:flex items-center gap-4 mt-8">
-              <nav>
-                <ul className="lg:flex items-center gap-4 mb-4 lg:mb-0">
-                  <li>
-                    <Link
-                      href={"https://www.renaudtixier.com/legal"}
-                      title="Mentions Légales"
-                      target="_blank"
-                      className="text-[#CDDBDE]/50 text-sm hover:underline transition">
-                      Mentions Légales
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href={"https://www.renaudtixier.com/legal"}
-                      title="Politique de Cookies"
-                      target="_blank"
-                      className="text-[#CDDBDE]/50 text-sm hover:underline transition">
-                      Politique de Cookies
-                    </Link>
-                  </li>
-                </ul>
-              </nav>
-              <span className="text-sm text-[#CDDBDE]/50">
-                © 2025 — Maison Dominique Renaud, ENSCI
-              </span>
-            </div>
-          </div>
-        </div>
-      </footer>
     </main>
   );
 }
