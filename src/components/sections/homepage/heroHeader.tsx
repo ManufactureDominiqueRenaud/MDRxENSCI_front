@@ -23,8 +23,8 @@ function HeroHeader(sectionData: { data: StrapiHomepageHeroheader }) {
         </h1>
         <Button variant={"outlineCustom"} className="mt-8" asChild>
           <Link
-            href={sectionData.data.cta.url}
-            title={sectionData.data.cta.title}
+            href={sectionData.data.cta.url || ""}
+            title={sectionData.data.cta.title || ""}
             target={sectionData.data.cta.externalLink ? "_blank" : "_self"}>
             <LucideArrowDown size={24} />
             {sectionData.data.cta.label}

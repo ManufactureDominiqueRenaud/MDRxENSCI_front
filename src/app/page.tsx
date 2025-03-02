@@ -54,6 +54,8 @@ export default async function Home() {
     ["homepage"]
   )) as StrapiHomepageData;
 
+  console.log(pageData);
+
   return (
     <main>
       {/* HERO HEADER */}
