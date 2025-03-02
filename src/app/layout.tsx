@@ -4,6 +4,8 @@ import "./globals.css";
 import ReturnToTop from "@/components/return-to-top";
 import Header from "@/components/sections/header";
 import Footer from "@/components/sections/footer";
+import { fetchStrapiData } from "@/lib/strapi-api";
+import { ScrollProgress } from "@/components/magicui/scroll-progress";
 
 const manrope = Manrope({
   weight: ["400", "500", "600", "700"],
@@ -15,35 +17,22 @@ export const metadata: Metadata = {
     "MDR x ENSCi | Un partenariat d'exception entre design et haute horlogerie",
   description:
     "MDR x ENSCi | Un partenariat d'exception entre design et haute horlogerie",
-  icons: {
-    icon: [
-      {
-        rel: "icon",
-        media: "(prefers-color-scheme: light)",
-        type: "image/png",
-        url: "/favicon/favicon-white.svg",
-      },
-      {
-        rel: "icon",
-        media: "(prefers-color-scheme: dark)",
-        type: "image/png",
-        url: "/favicon/favicon-white.svg",
-      },
-    ],
-  },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
+  const headerData = await fetchStrapiData("api/header?populate=*", ["header"]);
+
   return (
     <html lang="en">
       <body
         className={`${manrope.className} antialiased relative text-[#253031] bg-[#CDDBDE]`}>
         <ReturnToTop />
-        <Header />
+        <ScrollProgress />
+        <Header logoUrl={headerData.data.attributes.Logo.data.attributes.url} />
         {children}
         <Footer />
       </body>
