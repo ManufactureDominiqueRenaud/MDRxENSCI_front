@@ -13,7 +13,7 @@ type Image = {
   alt?: string;
 };
 
-type StrapiFooterData = {
+export type StrapiFooterData = {
   data: {
     data: {
       id: number;
