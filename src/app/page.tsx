@@ -1,5 +1,4 @@
-"use server";
-
+import HeroHeader from "@/components/sections/homepage/heroHeader";
 import { Button } from "@/components/ui/button";
 import {
   Carousel,
@@ -8,10 +7,35 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { LucideArrowDown, LucideArrowRight } from "lucide-react";
+import { fetchStrapiData } from "@/lib/strapi-api";
+import { StrapiHomepageHeroheader } from "@/lib/types";
+import { LucideArrowRight } from "lucide-react";
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
+//PAGE METADTA
+export const metadata: Metadata = {
+  title:
+    "MDR x ENSCi| Un partenariat d'exception entre design et haute horlogerie",
+  description:
+    "MDR x ENSCi | Un partenariat d'exception entre design et haute horlogerie",
+};
+
+//STRAPI DATA TYPES
+export type StrapiHomepageData = {
+  data: {
+    id: number;
+    attributes: {
+      title: string;
+      description: string;
+      slug: string;
+      sections: [StrapiHomepageHeroheader];
+    };
+  }[];
+};
+
+//PAGE
 export default async function Home() {
   const dataCarousel = [
     { src: "/carousel/1.jpg", alt: "carousel 1" },
@@ -25,43 +49,18 @@ export default async function Home() {
     { src: "/carousel/9.jpg", alt: "carousel 9" },
   ];
 
+  const pageData = (await fetchStrapiData(
+    "api/pages?filters[slug][$eq]=homepage&populate[sections][populate]=*",
+    ["homepage"]
+  )) as StrapiHomepageData;
+
   return (
     <main>
       {/* HERO HEADER */}
-      <section className="relative h-screen pt-8 flex flex-col justify-center items-center">
-        <div className="relative z-20 flex flex-col items-center">
-          <Image
-            src={"/logo-horizontal.svg"}
-            alt="logo"
-            width={500}
-            height={200}
-            className="w-48 lg:w-64 mb-8"
-          />
-          <h1 className="text-4xl lg:text-6xl text-[#CDDBDE] font-bold text-center w-full md:w-2/3 text-marcellus">
-            Un partenariat d&apos;exception entre design et haute horlogerie
-          </h1>
-          <Button variant={"outlineCustom"} className="mt-8" asChild>
-            <Link href={"#discover"}>
-              <LucideArrowDown size={24} />
-              Découvrir le projet
-              <LucideArrowDown size={24} />
-            </Link>
-          </Button>
-        </div>
-        <div className="block absolute top-0 left-0 w-full h-full bg-black/65 lg:bg-black/65 z-10"></div>
-        <Image
-          src={"/hero.jpeg"}
-          alt="hero"
-          width={1920}
-          height={1080}
-          className="absolute z-0 top-0 left-0 h-full w-full object-cover"
-        />
-      </section>
+      <HeroHeader data={pageData.data[0].attributes.sections[0]} />
 
       {/* ATELIER DE PROJET */}
-      <section
-        className="py-[150px] lg:py-[192px] px-[20px] md:px-[70px] lg:px-[120px] bg-[#CDDBDE] text-[#253031] text-left md:text-center"
-        id="discover">
+      <section className="py-[150px] lg:py-[192px] px-[20px] md:px-[70px] lg:px-[120px] bg-[#CDDBDE] text-[#253031] text-left md:text-center">
         <h2 className="font-bold text-3xl lg:text-5xl text-marcellus">
           L&apos;atelier de projet
         </h2>

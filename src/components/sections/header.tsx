@@ -1,13 +1,26 @@
 "use client";
 
+import { StrapiComponentImage } from "@/lib/types";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 
-type HeaderProps = {
-  logoUrl: string;
+type StrapiHeaderData = {
+  data: {
+    data: {
+      id: number;
+      attributes: {
+        title: string;
+        logo: {
+          data: {
+            attributes: StrapiComponentImage;
+          };
+        };
+      };
+    };
+  };
 };
 
-export default function Header({ logoUrl }: HeaderProps) {
+export default function Header(headerData: StrapiHeaderData) {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -26,7 +39,7 @@ export default function Header({ logoUrl }: HeaderProps) {
         onClick={handleLogoClick}
         className="w-[60px] lg:w-[85px] bg-[#CDDBDE] border border-[#253031]/20 p-1.5 rounded-sm shadow-ring cursor-pointer">
         <Image
-          src={logoUrl}
+          src={headerData.data.data.attributes.logo.data.attributes.url}
           alt="logo"
           width={100}
           height={100}

@@ -33,7 +33,7 @@ export default async function RootLayout({
         className={`${manrope.className} antialiased relative text-[#253031] bg-[#CDDBDE]`}>
         <ReturnToTop />
         <ScrollProgress />
-        <Header logoUrl={headerData.data.attributes.Logo.data.attributes.url} />
+        <Header data={headerData} />
         {children}
         <Footer data={footerData} />
       </body>

@@ -1,33 +1,31 @@
-type Link = {
+//COMPONENTS BLOCKS
+export type StrapiComponentLink = {
   id: number;
-  Label: string;
-  Url: string;
-  ExternalLink: boolean | null;
-  Title: string;
+  label: string;
+  url: string;
+  externalLink: boolean | null;
+  title: string;
 };
-
-type Image = {
+export type StrapiComponentImage = {
   width: number;
   height: number;
   url: string;
   alt?: string;
 };
 
-export type StrapiFooterData = {
-  data: {
+//SECTIONS BLOCKS
+export type StrapiHomepageHeroheader = {
+  title: string;
+  anchorName?: string;
+  logo: {
     data: {
-      id: number;
-      attributes: {
-        Title: string;
-        Copyright: string;
-        Logo: {
-          data: {
-            attributes: Image;
-          };
-        };
-        FooterLinks: Link[];
-        LegalLinks: Link[];
-      };
+      attributes: StrapiComponentImage;
+    };
+  };
+  cta: StrapiComponentLink;
+  backgroundImage: {
+    data: {
+      attributes: StrapiComponentImage;
     };
   };
 };
