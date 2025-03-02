@@ -2,71 +2,58 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-function Footer() {
+function Footer(footerData: StrapiFooterData) {
   return (
     <footer className="p-[20px] lg:p-[40px]">
       <div className="bg-[#253031] text-[#CDDBDE] lg:flex items-center gap-16 p-[40px] md:px-[70px] py-16 rounded-3xl">
         <div className="flex flex-col gap-8 lg:w-1/2">
           <Image
-            src={"/logo-horizontal.svg"}
-            alt="logo"
-            width={100}
-            height={100}
+            src={footerData.data.data.attributes.Logo.data.attributes.url}
+            alt={footerData.data.data.attributes.Logo.data.attributes.alt || ""}
+            width={footerData.data.data.attributes.Logo.data.attributes.width}
+            height={footerData.data.data.attributes.Logo.data.attributes.height}
             className="w-48"
           />
         </div>
         <div className="lg:w-1/2 mt-8 lg:mt-0">
           <div>
             <p className="text-sm text-[#CDDBDE]/50">
-              Manufacture Dominique Renaud
+              {footerData.data.data.attributes.Title}
             </p>
             <nav>
               <ul className="flex items-center gap-4">
-                <li>
-                  <Link
-                    href={"https://www.instagram.com/dominique.renaud/"}
-                    target="_blank"
-                    title="Accédez à notre Instagram"
-                    className="text-[#CDDBDE] text-sm hover:underline transition">
-                    Instagram
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href={"mailto:press@dominiquerenaud.ch"}
-                    target="_blank"
-                    title="Contactez notre service de presse"
-                    className="text-[#CDDBDE] text-sm hover:underline transition">
-                    Presse
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href={"mailto:info@dominiquerenaud.ch"}
-                    target="_blank"
-                    title="Contactez nous"
-                    className="text-[#CDDBDE] text-sm hover:underline transition">
-                    Contact
-                  </Link>
-                </li>
+                {footerData.data.data.attributes.FooterLinks.map((link) => (
+                  <li key={link.id}>
+                    <Link
+                      href={link.Url}
+                      title={link.Title}
+                      target={link.ExternalLink ? "_blank" : "_self"}
+                      className="text-[#CDDBDE] text-sm hover:underline transition">
+                      {link.Label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </nav>
           </div>
           <div className="lg:flex items-center gap-4 mt-8">
             <nav>
               <ul className="lg:flex items-center gap-4 mb-4 lg:mb-0">
-                <li>
-                  <Link
-                    href={"/legal"}
-                    title="Mentions Légales"
-                    className="text-[#CDDBDE]/50 text-sm hover:underline transition">
-                    Mentions Légales
-                  </Link>
-                </li>
+                {footerData.data.data.attributes.LegalLinks.map((link) => (
+                  <li key={link.id}>
+                    <Link
+                      href={link.Url}
+                      title={link.Title}
+                      target={link.ExternalLink ? "_blank" : "_self"}
+                      className="text-[#CDDBDE]/50 text-sm hover:underline transition">
+                      {link.Label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </nav>
             <span className="text-sm text-[#CDDBDE]/50">
-              © 2025 — Maison Dominique Renaud, ENSCI
+              {footerData.data.data.attributes.Copyright}
             </span>
           </div>
         </div>

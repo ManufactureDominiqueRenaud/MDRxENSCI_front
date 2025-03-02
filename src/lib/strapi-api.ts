@@ -12,7 +12,6 @@ export async function fetchStrapiData(endpoint: string, tags: string[]) {
       },
     }
   );
-
   if (!res.ok) throw new Error("Failed to fetch data");
   const data = await res.json();
   return data;

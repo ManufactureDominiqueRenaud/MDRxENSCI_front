@@ -25,6 +25,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const headerData = await fetchStrapiData("api/header?populate=*", ["header"]);
+  const footerData = await fetchStrapiData("api/footer?populate=*", ["footer"]);
 
   return (
     <html lang="en">
@@ -34,7 +35,7 @@ export default async function RootLayout({
         <ScrollProgress />
         <Header logoUrl={headerData.data.attributes.Logo.data.attributes.url} />
         {children}
-        <Footer />
+        <Footer data={footerData} />
       </body>
     </html>
   );
