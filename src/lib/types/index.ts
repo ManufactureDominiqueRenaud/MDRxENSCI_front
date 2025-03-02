@@ -16,7 +16,6 @@ export type StrapiComponentImage = {
 //SECTIONS BLOCKS
 export type StrapiHomepageHeroheader = {
   title: string;
-  anchorName?: string;
   logo: {
     data: {
       attributes: StrapiComponentImage;
@@ -28,4 +27,18 @@ export type StrapiHomepageHeroheader = {
       attributes: StrapiComponentImage;
     };
   };
+};
+export type StrapiAtelierProjet = {
+  title: string;
+  paragraph: string;
+};
+export type StrapiCollaboration = {
+  logo: {
+    data: {
+      attributes: StrapiComponentImage;
+    };
+  };
+  title: string;
+  labelCtaDownloadPressArticle: string;
+  pdfUrl: string;
 };

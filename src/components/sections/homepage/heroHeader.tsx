@@ -7,9 +7,7 @@ import React from "react";
 
 function HeroHeader(sectionData: { data: StrapiHomepageHeroheader }) {
   return (
-    <section
-      className="relative h-screen pt-8 flex flex-col justify-center items-center"
-      id={sectionData.data.anchorName}>
+    <section className="relative h-screen pt-8 flex flex-col justify-center items-center">
       <div className="relative z-20 flex flex-col items-center">
         <Image
           src={sectionData.data.logo.data.attributes.url}

@@ -1,3 +1,4 @@
+import AtelierProjet from "@/components/sections/homepage/atelierProjet";
 import HeroHeader from "@/components/sections/homepage/heroHeader";
 import { Button } from "@/components/ui/button";
 import {
@@ -8,7 +9,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { fetchStrapiData } from "@/lib/strapi-api";
-import { StrapiHomepageHeroheader } from "@/lib/types";
+import { StrapiAtelierProjet, StrapiHomepageHeroheader } from "@/lib/types";
 import { LucideArrowRight } from "lucide-react";
 import { Metadata } from "next";
 import Image from "next/image";
@@ -30,7 +31,7 @@ export type StrapiHomepageData = {
       title: string;
       description: string;
       slug: string;
-      sections: [StrapiHomepageHeroheader];
+      sections: [StrapiHomepageHeroheader, StrapiAtelierProjet];
     };
   }[];
 };
@@ -62,22 +63,7 @@ export default async function Home() {
       <HeroHeader data={pageData.data[0].attributes.sections[0]} />
 
       {/* ATELIER DE PROJET */}
-      <section className="py-[150px] lg:py-[192px] px-[20px] md:px-[70px] lg:px-[120px] bg-[#CDDBDE] text-[#253031] text-left md:text-center">
-        <h2 className="font-bold text-3xl lg:text-5xl text-marcellus">
-          L&apos;atelier de projet
-        </h2>
-        <p className="mt-4 font-serif-p">
-          Manufacture Dominique Renaud et l&apos;ENSCI-Les Ateliers, École
-          Nationale Supérieure de Création Industrielle, s&apos;associent autour
-          d&apos;un atelier de projet sur la création horlogère. Pendant quatre
-          mois, les élèves de l&apos;ENSCI ont exploré et interprété des
-          concepts tels que la perception et la lecture du temps, et les ont
-          traduit en applications concrètes sur la montre. Ce projet associe les
-          valeurs communes d&apos;innovation et de partage, unissant
-          enseignement supérieur et industrie, au service de la création
-          horlogère.
-        </p>
-      </section>
+      <AtelierProjet data={pageData.data[0].attributes.sections[1]} />
 
       {/* COLLAB */}
       <section className="bg-[#253031] text-[#CDDBDE] py-[150px] lg:py-[192px] px-[20px] lg:px-[120px] lg:flex items-center jusitfy-between">

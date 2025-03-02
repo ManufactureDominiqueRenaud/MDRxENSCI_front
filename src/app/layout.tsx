@@ -26,12 +26,6 @@ export default async function RootLayout({
 }) {
   const headerData = await fetchStrapiData("api/header?populate=*", ["header"]);
   const footerData = await fetchStrapiData("api/footer?populate=*", ["footer"]);
-
-  console.log("header : ");
-  console.log(headerData);
-  console.log("footer : ");
-  console.log(footerData);
-
   return (
     <html lang="en">
       <body
