@@ -39,10 +39,17 @@ export default function Header(headerData: StrapiHeaderData) {
         onClick={handleLogoClick}
         className="w-[60px] lg:w-[85px] bg-[#CDDBDE] border border-[#253031]/20 p-1.5 rounded-sm shadow-ring cursor-pointer">
         <Image
-          src={headerData.data.data.attributes.logo.data.attributes.url}
-          alt="logo"
-          width={100}
-          height={100}
+          src={headerData.data.data.attributes.logo.data.attributes.url || ""}
+          alt={
+            headerData.data.data.attributes.logo.data.attributes
+              .alternativeText || ""
+          }
+          width={
+            headerData.data.data.attributes.logo.data.attributes.width || 100
+          }
+          height={
+            headerData.data.data.attributes.logo.data.attributes.height || 100
+          }
           style={{ mixBlendMode: "difference" }}
         />
       </div>

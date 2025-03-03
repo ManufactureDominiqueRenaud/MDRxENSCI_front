@@ -10,7 +10,7 @@ export type StrapiComponentImage = {
   width: number;
   height: number;
   url: string;
-  alt?: string;
+  alternativeText?: string;
 };
 
 //SECTIONS BLOCKS
@@ -41,4 +41,33 @@ export type StrapiCollaboration = {
   title: string;
   labelCtaDownloadPressArticle: string;
   pdfUrl: string;
+  cta: StrapiComponentLink;
+};
+export type StrapiDominiqueCitation = {
+  citation: string;
+  name: string;
+  paragraph: string;
+  image: {
+    data: {
+      attributes: StrapiComponentImage;
+    };
+  };
+};
+export type StrapiCarouselHome = {
+  title: string;
+  carouselImages: {
+    data: {
+      id: number;
+      attributes: StrapiComponentImage;
+    }[];
+  };
+};
+export type StrapiAProposMDR = {
+  title: string;
+  paragraph: string;
+  image: {
+    data: {
+      attributes: StrapiComponentImage;
+    };
+  };
 };
