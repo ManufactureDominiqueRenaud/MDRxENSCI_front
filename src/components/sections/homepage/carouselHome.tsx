@@ -33,6 +33,9 @@ function CarouselHome(sectionData: { data: StrapiCarouselHome }) {
                     height={image.attributes.height || 1080}
                   />
                 </div>
+                <p className="bg-black/2 border-l border-slate-600 px-4 py-2 max-w-1/2 text-center text-sm lg:text-base mt-8">
+                  {image.attributes.caption || ""}
+                </p>
               </div>
             </CarouselItem>
           ))}

@@ -10,6 +10,7 @@ export type StrapiComponentImage = {
   width: number;
   height: number;
   url: string;
+  caption?: string;
   alternativeText?: string;
 };
 
