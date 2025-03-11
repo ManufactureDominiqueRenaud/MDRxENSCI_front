@@ -1,6 +1,9 @@
+"use client";
+
 import { StrapiComponentImage, StrapiComponentLink } from "@/lib/types";
 import Image from "next/image";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 import React from "react";
 
 export type StrapiFooterData = {
@@ -23,6 +26,8 @@ export type StrapiFooterData = {
 };
 
 function Footer(footerData: StrapiFooterData) {
+  const { locale } = useParams();
+
   return (
     <footer className="p-[20px] lg:p-[40px]">
       <div className="bg-[#253031] text-[#CDDBDE] lg:flex items-center gap-16 p-[40px] md:px-[70px] py-16 rounded-3xl">
@@ -69,7 +74,7 @@ function Footer(footerData: StrapiFooterData) {
                 {footerData.data.data.attributes.legalLinks.map((link) => (
                   <li key={link.id || Math.random()}>
                     <Link
-                      href={link.url || ""}
+                      href={`/${locale}/${link.url}` || ""}
                       title={link.title || ""}
                       target={link.externalLink ? "_blank" : "_self"}
                       className="text-[#CDDBDE]/50 text-sm hover:underline transition">

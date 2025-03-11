@@ -1,8 +1,10 @@
 "use client";
 
 import { StrapiComponentImage } from "@/lib/types";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
+import { useParams, usePathname, useRouter } from "next/navigation";
 
 type StrapiHeaderData = {
   data: {
@@ -23,10 +25,12 @@ type StrapiHeaderData = {
 export default function Header(headerData: StrapiHeaderData) {
   const router = useRouter();
   const pathname = usePathname();
+  const pathnameWithoutLocale = pathname.replace(/\/(fr|en)/, "");
+  const { locale } = useParams();
 
   const handleLogoClick = () => {
     if (pathname !== "/") {
-      router.push("/");
+      router.push(`/${locale}`);
     } else {
       window.scrollTo(0, 0);
     }
@@ -53,6 +57,36 @@ export default function Header(headerData: StrapiHeaderData) {
           style={{ mixBlendMode: "difference" }}
         />
       </div>
+
+      {/* Sélecteur de langue */}
+      <nav className="bg-[#CDDBDE] border border-[#253031]/20 md:py-1 pb-0.5 md:pb-1.5 px-1 md:px-2 rounded-sm shadow-ring">
+        <ul className="flex items-center gap-2 md:gap-3">
+          <li>
+            <Link
+              href={`/fr${pathnameWithoutLocale}`}
+              className={cn(
+                "text-xs px-2 rounded-sm",
+                locale === "fr"
+                  ? "text-[#CDDBDE] bg-[#253031]"
+                  : "text-[#253031] bg-[#CDDBDE]"
+              )}>
+              fr
+            </Link>
+          </li>
+          <li>
+            <Link
+              href={`/en${pathnameWithoutLocale}`}
+              className={cn(
+                " text-xs px-2 rounded-sm",
+                locale === "en"
+                  ? "text-[#CDDBDE] bg-[#253031]"
+                  : "text-[#253031] bg-[#CDDBDE]"
+              )}>
+              en
+            </Link>
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 }

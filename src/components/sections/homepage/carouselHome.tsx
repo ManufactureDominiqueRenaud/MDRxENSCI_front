@@ -11,7 +11,7 @@ import React from "react";
 
 function CarouselHome(sectionData: { data: StrapiCarouselHome }) {
   return (
-    <section className="py-[150px] lg:py-[192px] px-[20px] md:px-[70px] lg:px-[120px] flex flex-col items-center gap-12">
+    <section className="py-[150px] lg:py-[192px] px-[20px] md:px-[70px] lg:px-[120px] flex flex-col items-center gap-12 max-w-[100svw]">
       <h2 className="font-bold text-center w-full text-3xl lg:text-5xl px-4 text-marcellus">
         {sectionData.data.title || "null"}
       </h2>
@@ -19,7 +19,8 @@ function CarouselHome(sectionData: { data: StrapiCarouselHome }) {
         opts={{
           align: "center",
           loop: true,
-        }}>
+        }}
+        className="w-full">
         <CarouselContent className="cursor-grab">
           {sectionData.data.carouselImages.data.map((image, index) => (
             <CarouselItem key={index}>
@@ -33,7 +34,7 @@ function CarouselHome(sectionData: { data: StrapiCarouselHome }) {
                     height={image.attributes.height || 1080}
                   />
                 </div>
-                <p className="bg-black/2 border-l border-slate-600 px-4 py-2 max-w-1/2 text-center text-sm lg:text-base mt-8">
+                <p className="bg-black/2 md:border-l border-slate-600 md:px-4 md:py-2 w-full md:w-1/2 text-center text-xs md:text-sm lg:text-base mt-8">
                   {image.attributes.caption || ""}
                 </p>
               </div>

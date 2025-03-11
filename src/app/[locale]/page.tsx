@@ -44,11 +44,21 @@ export type StrapiHomepageData = {
 };
 
 //PAGE
-export default async function Home() {
-  const pageData = (await fetchStrapiData(
-    "api/pages?filters[slug][$eq]=homepage&populate[sections][populate][logo]=*&populate[sections][populate][cta]=*&populate[sections][populate][backgroundImage]=*&populate[sections][populate][image]=*&populate[sections][populate][carouselImages]=*",
-    ["homepage"]
-  )) as StrapiHomepageData;
+export default async function Home({ params }: any) {
+  const { locale } = params;
+  let pageData: StrapiHomepageData;
+
+  if (locale === "fr") {
+    pageData = (await fetchStrapiData(
+      `api/pages?filters[slug][$eq]=homepage-fr&locale=fr&populate[sections][populate][logo]=*&populate[sections][populate][cta]=*&populate[sections][populate][backgroundImage]=*&populate[sections][populate][image]=*&populate[sections][populate][carouselImages]=*`,
+      [`homepage-fr`]
+    )) as StrapiHomepageData;
+  } else {
+    pageData = (await fetchStrapiData(
+      `api/pages?filters[slug][$eq]=homepage-en&locale=en&populate[sections][populate][logo]=*&populate[sections][populate][cta]=*&populate[sections][populate][backgroundImage]=*&populate[sections][populate][image]=*&populate[sections][populate][carouselImages]=*`,
+      ["homepage-en"]
+    )) as StrapiHomepageData;
+  }
 
   return (
     <main>
