@@ -41,7 +41,6 @@ function CarouselHome(sectionData: { data: StrapiCarouselHome }) {
             </CarouselItem>
           ))}
         </CarouselContent>
-        ;
         <CarouselPrevious className="left-0" />
         <CarouselNext className="right-0" />
       </Carousel>
