@@ -110,7 +110,7 @@ export default async function Page({ params }: any) {
 
   return (
     <main>
-      <section className="min-h-16 flex items-center lg:p-6 justify-center lg:justify-end pt-16 lg:mr-32 px-[20px] md:px-[70px] lg:px-[0px] relative lg:z-50">
+      <section className="min-h-16 flex items-center lg:p-6 justify-center lg:justify-end pt-16 lg:mr-32 lg:ml-32 px-[20px] md:px-[70px] lg:px-[0px] relative lg:z-50">
         <Button variant={"link"} asChild>
           <Link href={`/${locale}/#projects`}>
             <LucideArrowLeft className="h-3 w-3" />

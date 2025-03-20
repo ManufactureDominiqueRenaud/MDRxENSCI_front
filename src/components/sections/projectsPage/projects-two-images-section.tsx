@@ -40,7 +40,7 @@ function ProjectsTwoImagesSection({
           className="w-full h-full object-cover"
         />
       </div>
-      <div className="lg:w-1/2 overflow-hidden rounded-3xl rounded-t-none lg:rounded-t-3xl lg:rounded-l-none">
+      <div className="lg:w-1/2 overflow-hidden rounded-3xl rounded-t-none lg:rounded-t-3xl lg:rounded-tl-none lg:rounded-bl-none">
         <Image
           src={sectionData.image2.data.attributes.url || ""}
           alt={sectionData.image2.data.attributes.alternativeText || ""}
