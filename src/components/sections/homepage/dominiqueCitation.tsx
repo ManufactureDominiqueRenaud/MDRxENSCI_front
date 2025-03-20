@@ -6,10 +6,10 @@ function DominiqueCitation(sectionData: { data: StrapiDominiqueCitation }) {
   return (
     <section className="pt-[150px] pb-[75px] lg:py-[192px] px-[20px] md:px-[70px] lg:px-[120px] lg:flex items-center gap-12">
       <div className="lg:w-1/2">
-        <p className="font-bold italic text-xl lg:text-2xl text-marcellus">
+        <p className="font-bold italic text-xl lg:text-2xl marcellus-regular">
           {sectionData.data.citation || "null"}
         </p>
-        <p className="border-l-2 border-[#CDDBDE] pl-2 mt-4 text-sm lg:text-base">
+        <p className="border-l-2 border-[#253031] pl-2 mt-4 text-sm lg:text-base">
           {sectionData.data.name || "null"}
         </p>
         <p className="mt-8">{sectionData.data.paragraph || "null"}</p>

@@ -4,7 +4,7 @@ import React from "react";
 function Page() {
   return (
     <section className="py-[150px] lg:py-[192px] px-[20px] md:px-[70px] lg:px-[120px] bg-[#CDDBDE] text-[#253031] text-left md:text-center">
-      <h1 className="font-bold text-3xl lg:text-5xl text-marcellus">
+      <h1 className="font-bold text-3xl lg:text-5xl marcellus-regular">
         Mentions légales
       </h1>
       <div className="block h-px w-1/2 bg-[#253031] my-16 mx-auto"></div>

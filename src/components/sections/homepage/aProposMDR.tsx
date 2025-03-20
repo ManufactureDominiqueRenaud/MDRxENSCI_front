@@ -15,7 +15,7 @@ function AProposMDR(sectionData: { data: StrapiAProposMDR }) {
         />
       </div>
       <div className="lg:w-1/2 mt-8 lg:mt-0">
-        <h2 className="font-bold text-3xl lg:text-5xl text-balance text-marcellus">
+        <h2 className="font-bold text-3xl lg:text-5xl text-balance marcellus-regular">
           {sectionData.data.title || "null"}
         </h2>
         <p className="mt-8">{sectionData.data.paragraph || "null"}</p>
