@@ -16,6 +16,8 @@ export async function revalidateAllTags() {
   revalidateTag("homepage-fr");
   revalidateTag("homepage-en");
   revalidateTag("projects-ids");
+  revalidateTag("projects-fr")
+  revalidateTag("projects-en")
 
   const ProjectsIds = await getAllProjectsIds();
   ProjectsIds.forEach((projectId: number) => {
