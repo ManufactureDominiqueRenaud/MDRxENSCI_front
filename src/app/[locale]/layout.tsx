@@ -6,6 +6,7 @@ import Footer from "@/components/sections/footer";
 import { fetchStrapiData } from "@/lib/strapi-api";
 import { ScrollProgress } from "@/components/magicui/scroll-progress";
 import { Analytics } from "@vercel/analytics/react";
+import VoteModule from "@/components/vote-module";
 
 const manrope = Manrope({
   weight: ["400", "500", "600", "700"],
@@ -45,6 +46,7 @@ export default async function RootLayout({
         className={`${manrope.className} antialiased relative text-[#253031] bg-[#CDDBDE]`}
       >
         <ReturnToTop />
+        <VoteModule />
         <ScrollProgress />
         <Header data={headerData} />
         {children}
