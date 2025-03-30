@@ -41,7 +41,7 @@ export default function Header(headerData: StrapiHeaderData) {
       <div
         title="Retour à la homepage"
         onClick={handleLogoClick}
-        className="w-[60px] lg:w-[85px] bg-[#CDDBDE] border border-[#253031]/20 p-1.5 rounded-sm shadow-ring cursor-pointer">
+        className="w-[60px] lg:w-[85px] bg-[#ffffff] border border-[#253031]/20 p-1.5 rounded-sm shadow-ring cursor-pointer">
         <Image
           src={headerData.data.data.attributes.logo.data.attributes.url || ""}
           alt={
@@ -59,7 +59,7 @@ export default function Header(headerData: StrapiHeaderData) {
       </div>
 
       {/* Sélecteur de langue */}
-      <nav className="bg-[#CDDBDE] border border-[#253031]/20 md:py-1 pb-0.5 md:pb-1.5 px-1 md:px-2 rounded-sm shadow-ring">
+      <nav className="bg-[#ffffff] border border-[#253031]/20 md:py-1 pb-0.5 md:pb-1.5 px-1 md:px-2 rounded-sm shadow-ring">
         <ul className="flex items-center gap-2 md:gap-3">
           <li>
             <Link
@@ -67,8 +67,8 @@ export default function Header(headerData: StrapiHeaderData) {
               className={cn(
                 "text-xs px-2 rounded-sm",
                 locale === "fr"
-                  ? "text-[#CDDBDE] bg-[#253031]"
-                  : "text-[#253031] bg-[#CDDBDE]"
+                  ? "text-[#ffffff] bg-[#253031]"
+                  : "text-[#253031] bg-[#ffffff]"
               )}>
               fr
             </Link>
@@ -79,8 +79,8 @@ export default function Header(headerData: StrapiHeaderData) {
               className={cn(
                 " text-xs px-2 rounded-sm",
                 locale === "en"
-                  ? "text-[#CDDBDE] bg-[#253031]"
-                  : "text-[#253031] bg-[#CDDBDE]"
+                  ? "text-[#ffffff] bg-[#253031]"
+                  : "text-[#253031] bg-[#ffffff]"
               )}>
               en
             </Link>

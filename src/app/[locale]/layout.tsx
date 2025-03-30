@@ -1,4 +1,4 @@
-import { Manrope } from "next/font/google";
+import { Manrope, Marcellus } from "next/font/google";
 import "../globals.css";
 import ReturnToTop from "@/components/return-to-top";
 import Header from "@/components/sections/header";
@@ -7,10 +7,18 @@ import { fetchStrapiData } from "@/lib/strapi-api";
 import { ScrollProgress } from "@/components/magicui/scroll-progress";
 import { Analytics } from "@vercel/analytics/react";
 import VoteModule from "@/components/vote-module";
+import { Toaster } from "@/components/ui/toaster";
 
 const manrope = Manrope({
   weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
+  variable: '--font-manrope',
+});
+
+const marcellus = Marcellus({
+  weight: ["400"],
+  subsets: ["latin"],
+  variable: '--font-marcellus',
 });
 
 export default async function RootLayout({
@@ -51,6 +59,7 @@ export default async function RootLayout({
         <Header data={headerData} />
         {children}
         <Footer data={footerData} />
+        <Toaster />
         <Analytics />
       </body>
     </html>
