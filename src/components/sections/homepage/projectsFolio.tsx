@@ -1,4 +1,4 @@
-import { StrapiProjectsListData } from "@/app/[locale]/[projectId]/page";
+import { StrapiProjectsListData } from "@/app/[locale]/[projectSlug]/page";
 import { Button } from "@/components/ui/button";
 import { StrapiProjetsFolioSection } from "@/lib/types";
 import { LucideArrowRight, LucidePlus } from "lucide-react";
@@ -29,7 +29,7 @@ function ProjectsFolio({
         {Array.isArray(projects) ? (
           projects.map((project, index) => (
             <div key={index} className="relative">
-              <Link href={`${locale}/${project.id}`}>
+              <Link href={`${locale}/${project.attributes.slug}`}>
                 <div className="overflow-hidden rounded-3xl mt-8 lg:mt-0 group/project relative">
                   <Image
                     width={
@@ -52,7 +52,7 @@ function ProjectsFolio({
                   </Button>
                 </div>
               </Link>
-              <Link href={`${locale}/${project.id}`}>
+              <Link href={`${locale}/${project.attributes.slug}`}>
                 <p className="mt-4 font-bold hover:underline hover:opacity-90 hover:cursor-pointer inline-block">
                   {project.attributes.projectTitle}
                 </p>

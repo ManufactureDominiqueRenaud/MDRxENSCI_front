@@ -16,7 +16,7 @@ import {
   StrapiProjetsFolioSection,
 } from "@/lib/types";
 import { Metadata } from "next";
-import { StrapiProjectsListData } from "./[projectId]/page";
+import { StrapiProjectsListData } from "./[projectSlug]/page";
 
 //PAGE METADTA
 export const metadata: Metadata = {
@@ -60,7 +60,7 @@ export default async function Home({ params }: any) {
       `api/pages?filters[slug][$eq]=homepage-fr&locale=fr&populate[sections][populate][logo]=*&populate[sections][populate][cta]=*&populate[sections][populate][backgroundImage]=*&populate[sections][populate][image]=*&populate[sections][populate][carouselImages]=*`,
       [`homepage-fr`]
     )) as StrapiHomepageData;
-    projectsData = await fetchStrapiData(`api/projets?populate=*`, [
+    projectsData = await fetchStrapiData(`api/projets?locale=fr&populate=*`, [
       `projects-fr`,
     ]);
   } else {
@@ -68,8 +68,8 @@ export default async function Home({ params }: any) {
       `api/pages?filters[slug][$eq]=homepage-en&locale=en&populate[sections][populate][logo]=*&populate[sections][populate][cta]=*&populate[sections][populate][backgroundImage]=*&populate[sections][populate][image]=*&populate[sections][populate][carouselImages]=*`,
       ["homepage-en"]
     )) as StrapiHomepageData;
-    projectsData = await fetchStrapiData(`api/projets?populate=*`, [
-      `projects-fr`,
+    projectsData = await fetchStrapiData(`api/projets?locale=en&populate=*`, [
+      `projects-en`,
     ]);
   }
 
@@ -79,13 +79,13 @@ export default async function Home({ params }: any) {
         pageData.data[0].attributes.sections.map((item, index) => {
           switch (item.__component) {
             case "sections-homepage.hero-header":
-              return <HeroHeader data={item} />;
+              return <HeroHeader data={item} key={index + item.__component} />;
             case "sections-homepage.atelier-projet":
-              return <AtelierProjet data={item} />;
+              return <AtelierProjet data={item} key={index + item.__component} />;
             case "sections-homepage.collab-section":
-              return <Collaboration data={item} />;
+              return <Collaboration data={item} key={index + item.__component} />;
             case "sections-homepage.dominique-renaud-section":
-              return <DominiqueCitation data={item} />;
+              return <DominiqueCitation data={item} key={index + item.__component} />;
             case "sections-homepage.project-folio":
               return (
                 <ProjectsFolio

@@ -1,8 +1,14 @@
 import { revalidateTag } from "next/cache";
 import { fetchStrapiData } from "./strapi-api";
 
-export async function getAllProjectsIds() {
-  return await fetchStrapiData(`api/projets?fields=id`, ["projects-ids"]);
+export async function getAllProjectSlugs() {
+  const data = await fetchStrapiData(`api/projets?fields=slug`, ["projects-slugs"]);
+  const projectSlugs = [] as string[];
+  data.data.forEach((item: any) => {
+    projectSlugs.push(item.attributes.slug);
+    console.log(item.attributes.slug);
+  });
+  return projectSlugs;
 }
 
 export async function revalidateAllTags() {
@@ -15,13 +21,13 @@ export async function revalidateAllTags() {
   revalidateTag("homepage");
   revalidateTag("homepage-fr");
   revalidateTag("homepage-en");
-  revalidateTag("projects-ids");
+  revalidateTag("projects-slugs");
   revalidateTag("projects-fr")
   revalidateTag("projects-en")
 
-  const ProjectsIds = await getAllProjectsIds();
-  ProjectsIds.forEach((projectId: number) => {
-    revalidateTag(`project-fr-${projectId}`);
-    revalidateTag(`project-en-${projectId}`);
+  const projectSlugs = await getAllProjectSlugs();
+  projectSlugs.forEach((slug: string) => {
+    revalidateTag(`project-fr-${slug}`);
+    revalidateTag(`project-en-${slug}`);
   });
 }

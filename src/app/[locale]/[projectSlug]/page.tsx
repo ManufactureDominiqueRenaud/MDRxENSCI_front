@@ -14,7 +14,7 @@ import ProjectsVideoSection, {
   StrapiProjectVideoSection,
 } from "@/components/sections/projectsPage/projects-video-section";
 import { Button } from "@/components/ui/button";
-import { getAllProjectsIds } from "@/lib/revalidate";
+import { getAllProjectSlugs } from "@/lib/revalidate";
 import { fetchStrapiData } from "@/lib/strapi-api";
 import { StrapiComponentImage } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -65,6 +65,7 @@ export type StrapiProjectPageData = {
 export type StrapiProjectsListData = {
   id: number;
   attributes: {
+    slug: string;
     projectTitle: string;
     projectDesc: string;
     voteForProjectCTA: string;
@@ -85,26 +86,22 @@ export type StrapiProjectsListData = {
 
 //PAGE
 export default async function Page({ params }: any) {
-  const { projectId, locale } = params;
-  const tempProjectsIds = await getAllProjectsIds();
-  let projectIds = [] as number[];
-  tempProjectsIds.data.forEach((item: any) => {
-    projectIds.push(item.id);
-  });
-  if (!projectIds.includes(parseInt(projectId))) {
+  const { projectSlug, locale } = params;
+  const projectSlugs = await getAllProjectSlugs();
+  if (!projectSlugs.includes(projectSlug)) {
     return redirect("/");
   }
 
   let projectData: StrapiProjectPageData;
   if (locale === "fr") {
     projectData = (await fetchStrapiData(
-      `api/projets?filters[id][$eq]=${projectId}&populate[content][populate][image]=*&populate[content][populate][image1]=*&populate[content][populate][image2]=*&populate[content][populate][video]=*&populate[studentList]=*`,
-      [`project-fr-${projectId}`]
+      `api/projets?locale=${locale}&filters[slug][$eq]=${projectSlug}&populate[content][populate][image]=*&populate[content][populate][image1]=*&populate[content][populate][image2]=*&populate[content][populate][video]=*&populate[studentList]=*`,
+      [`project-fr-${projectSlug}`]
     )) as StrapiProjectPageData;
   } else {
     projectData = (await fetchStrapiData(
-      `api/projets?filters[id][$eq]=${projectId}&populate[content][populate][image]=*&populate[content][populate][image1]=*&populate[content][populate][image2]=*&populate[content][populate][video]=*&populate[studentList]=*`,
-      [`project-en-${projectId}`]
+      `api/projets?locale=${locale}&filters[slug][$eq]=${projectSlug}&populate[content][populate][image]=*&populate[content][populate][image1]=*&populate[content][populate][image2]=*&populate[content][populate][video]=*&populate[studentList]=*`,
+      [`project-en-${projectSlug}`]
     )) as StrapiProjectPageData;
   }
 
