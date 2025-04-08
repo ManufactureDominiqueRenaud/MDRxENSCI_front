@@ -1,4 +1,4 @@
-import { Manrope } from "next/font/google";
+import { Manrope, Marcellus } from "next/font/google";
 import "../globals.css";
 import ReturnToTop from "@/components/return-to-top";
 import Header from "@/components/sections/header";
@@ -10,6 +10,13 @@ import { Analytics } from "@vercel/analytics/react";
 const manrope = Manrope({
   weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
+  variable: '--font-manrope',
+});
+
+const marcellus = Marcellus({
+  weight: ["400"],
+  subsets: ["latin"],
+  variable: '--font-marcellus',
 });
 
 export default async function RootLayout({
