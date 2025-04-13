@@ -169,12 +169,12 @@ export default async function Page({ params }: any) {
           "py-[150px] lg:py-[192px] px-[20px] md:px-[70px] lg:px-[120px] gap-12 flex flex-col items-center"
         )}
       >
-        <Button variant={"default"} size={"lg"} asChild>
+        {/* <Button variant={"default"} size={"lg"} asChild>
           <Link href={`/${locale}/#projects`}>
             {projectData.data[0].attributes.voteForProjectCTA}
             <LucidePlus className="h-3 w-3" />
           </Link>
-        </Button>
+        </Button> */}
         <h1 className="text-4xl lg:text-6xl font-bold text-center text-balance w-full md:w-2/3 marcellus-regular">
           {projectData.data[0].attributes.projectTitle}
         </h1>
