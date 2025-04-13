@@ -9,7 +9,7 @@ import { useSelectedProjectsToVote } from "@/store/use-selected-projects-to-vote
 import { useAtom } from "jotai";
 
 interface Item {
-  id: string;
+  slug: string;
   name: string;
 }
 
@@ -39,7 +39,7 @@ export default function SortableList({
           <AnimatePresence>
             {items.map((item, index) => (
               <Reorder.Item
-                key={item.id}
+                key={item.slug}
                 value={item}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}

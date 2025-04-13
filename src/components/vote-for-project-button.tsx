@@ -10,20 +10,24 @@ import { useIsPinnedVoteModule } from "@/store/use-pinned-vote-module";
 
 function VoteForProjectButton({
   label,
-  projectId,
+  projectSlug,
   projectName,
   locale,
+  onClick, // Add this line
 }: {
   label: string;
-  projectId: number;
+  projectSlug: string;
   projectName: string;
   locale?: string;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void; // Add this line
 }) {
   const [items, setItems] = useAtom(useSelectedProjectsToVote);
   const [isPinned, setIsPinned] = useIsPinnedVoteModule();
   const { toast } = useToast();
 
-  const handleClickOnVoteForProject = () => {
+  const handleClickOnVoteForProject = (event: React.MouseEvent) => {
+    event?.stopPropagation();
+
     if (!isPinned) {
       setIsPinned(true);  
     }
@@ -40,19 +44,19 @@ function VoteForProjectButton({
       return;
     } else if (
       items.some(
-        (item) => item.id === projectId.toString() && item.name === projectName
+        (item) => item.slug === projectSlug.toString() && item.name === projectName
       )
     ) {
       //Supprimer le projet de la liste
       const newItems = items.filter(
-        (item) => item.id !== projectId.toString() || item.name !== projectName
+        (item) => item.slug !== projectSlug.toString() || item.name !== projectName
       );
       setItems(newItems);
     } else {
       setItems([
         ...items,
         {
-          id: projectId.toString(),
+          slug: projectSlug.toString(),
           name: projectName,
         },
       ]);
@@ -64,7 +68,7 @@ function VoteForProjectButton({
       variant={
         items.some(
           (item) =>
-            item.id === projectId.toString() && item.name === projectName
+            item.slug === projectSlug && item.name === projectName
         )
           ? "secondary"
           : "default"
@@ -73,26 +77,26 @@ function VoteForProjectButton({
       onClick={handleClickOnVoteForProject}
     >
       {items.some(
-        (item) => item.id === projectId.toString() && item.name === projectName
+        (item) => item.slug === projectSlug && item.name === projectName
       )
         ? locale === "fr"
           ? "Projet sélectionné - Position actuelle : " +
             (items.findIndex(
               (item) =>
-                item.id === projectId.toString() && item.name === projectName
+                item.slug === projectSlug && item.name === projectName
             ) +
               1) +
             "/3"
           : "Project selected - Actual position : " +
             (items.findIndex(
               (item) =>
-                item.id === projectId.toString() && item.name === projectName
+                item.slug === projectSlug && item.name === projectName
             ) +
               1) +
             "/3"
         : label}
       {items.some(
-        (item) => item.id === projectId.toString() && item.name === projectName
+        (item) => item.slug === projectSlug && item.name === projectName
       ) ? (
         <LucideCheck className="h-3 w-3" />
       ) : (

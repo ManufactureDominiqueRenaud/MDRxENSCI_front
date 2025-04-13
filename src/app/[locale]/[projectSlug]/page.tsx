@@ -45,6 +45,7 @@ export type StrapiProjectPageData = {
   data: {
     id: number;
     attributes: {
+      slug: string;
       projectTitle: string;
       projectDesc: string;
       voteForProjectCTA: string;
@@ -108,7 +109,7 @@ export default async function Page({ params }: any) {
 
   return (
     <main>
-      <section className="min-h-16 flex items-center lg:p-6 justify-center lg:justify-end pt-16 lg:mr-32 lg:ml-32 px-[20px] md:px-[70px] lg:px-[0px] relative lg:z-50">
+      <section className="min-h-16 flex items-center lg:p-6 justify-center lg:justify-end pt-16 lg:mr-32 lg:ml-32 px-[20px] md:px-[70px] lg:px-[0px] relative lg:z-[70]">
         <Button variant={"link"} asChild>
           <Link href={`/${locale}/#projects`}>
             <LucideArrowLeft className="h-3 w-3" />
@@ -172,7 +173,7 @@ export default async function Page({ params }: any) {
       >
         <VoteForProjectButton
           label={projectData.data[0].attributes.voteForProjectCTA}
-          projectId={projectData.data[0].id}
+          projectSlug={projectData.data[0].attributes.slug}
           projectName={projectData.data[0].attributes.projectTitle}
           locale={locale}
         />

@@ -37,7 +37,7 @@ export default function Header(headerData: StrapiHeaderData) {
   };
 
   return (
-    <header className="fixed z-50 p-6 bg-gradient-to-b from-[#253031]/10 to-[#253031]/0 w-full flex justify-between items-center">
+    <header className="fixed z-[60] p-6 bg-gradient-to-b from-[#253031]/10 to-[#253031]/0 w-full flex justify-between items-center">
       <div
         title="Retour à la homepage"
         onClick={handleLogoClick}

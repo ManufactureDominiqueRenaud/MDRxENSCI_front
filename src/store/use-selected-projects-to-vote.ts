@@ -1,7 +1,7 @@
 import { atom } from "jotai";
 
 type Project = {
-  id: string;
+  slug: string;
   name: string;
 };
 

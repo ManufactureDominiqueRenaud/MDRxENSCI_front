@@ -13,6 +13,7 @@ function FloatableVoteButton({
             attributes: {
                 voteForProjectCTA: string;
                 projectTitle: string;
+                slug: string;
             };
         }[];
     };
@@ -43,7 +44,7 @@ function FloatableVoteButton({
     <div className="fixed bottom-8 right-1/2 translate-x-1/2 z-50">
         <VoteForProjectButton
           label={projectData.data[0].attributes.voteForProjectCTA}
-          projectId={projectData.data[0].id}
+          projectSlug={projectData.data[0].attributes.slug}
           projectName={projectData.data[0].attributes.projectTitle}
           locale={locale}
         />
