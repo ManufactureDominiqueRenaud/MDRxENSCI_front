@@ -12,7 +12,7 @@ import React from "react";
 function CarouselHome(sectionData: { data: StrapiCarouselHome }) {
   return (
     <section className="py-[150px] lg:py-[192px] px-[20px] md:px-[70px] lg:px-[120px] flex flex-col items-center gap-12 max-w-[100svw]">
-      <h2 className="font-bold text-center w-full text-3xl lg:text-5xl px-4 text-marcellus">
+      <h2 className="font-bold text-center w-full text-3xl lg:text-5xl px-4 marcellus-regular">
         {sectionData.data.title || "null"}
       </h2>
       <Carousel
@@ -20,7 +20,8 @@ function CarouselHome(sectionData: { data: StrapiCarouselHome }) {
           align: "center",
           loop: true,
         }}
-        className="w-full">
+        className="w-full"
+      >
         <CarouselContent className="cursor-grab">
           {sectionData.data.carouselImages.data.map((image, index) => (
             <CarouselItem key={index}>

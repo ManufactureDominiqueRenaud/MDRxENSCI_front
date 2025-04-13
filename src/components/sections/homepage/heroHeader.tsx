@@ -16,14 +16,15 @@ function HeroHeader(sectionData: { data: StrapiHomepageHeroheader }) {
           height={sectionData.data.logo.data.attributes.height || 100}
           className="w-48 lg:w-64 mb-8"
         />
-        <h1 className="text-4xl lg:text-6xl text-[#CDDBDE] font-bold text-center w-full md:w-2/3 text-marcellus">
+        <h1 className="text-4xl lg:text-6xl text-[#CDDBDE] font-bold text-center w-full md:w-2/3 marcellus-regular">
           {sectionData.data.title || "null"}
         </h1>
         <Button variant={"outlineCustom"} className="mt-8" asChild>
           <Link
             href={sectionData.data.cta.url || ""}
             title={sectionData.data.cta.title || ""}
-            target={sectionData.data.cta.externalLink ? "_blank" : "_self"}>
+            target={sectionData.data.cta.externalLink ? "_blank" : "_self"}
+          >
             <LucideArrowDown size={24} />
             {sectionData.data.cta.label || "null"}
             <LucideArrowDown size={24} />

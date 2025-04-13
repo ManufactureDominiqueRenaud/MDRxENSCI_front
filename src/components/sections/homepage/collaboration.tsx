@@ -16,7 +16,7 @@ function Collaboration(sectionData: { data: StrapiCollaboration }) {
           height={sectionData.data.logo.data.attributes.height || 100}
           className="w-64 lg:w-48 mb-8 mx-0 md:mx-auto lg:mx-0"
         />
-        <h2 className="font-bold text-3xl lg:text-5xl w-full lg:w-3/4 mt-4 lg:mt-0 md:text-center lg:text-left lg:text-balance text-marcellus">
+        <h2 className="font-bold text-3xl lg:text-5xl w-full lg:w-3/4 mt-4 lg:mt-0 md:text-center lg:text-left lg:text-balance marcellus-regular">
           {sectionData.data.title || "null"}
         </h2>
       </div>
@@ -25,7 +25,8 @@ function Collaboration(sectionData: { data: StrapiCollaboration }) {
           <Link
             href={sectionData.data.pdfUrl || ""}
             target="_blank"
-            title={sectionData.data.labelCtaDownloadPressArticle || ""}>
+            title={sectionData.data.labelCtaDownloadPressArticle || ""}
+          >
             {sectionData.data.labelCtaDownloadPressArticle || "null"}
           </Link>
         </Button>
@@ -33,7 +34,8 @@ function Collaboration(sectionData: { data: StrapiCollaboration }) {
           <Link
             href={sectionData.data.cta.url || ""}
             target={sectionData.data.cta.externalLink ? "_blank" : "_self"}
-            title={sectionData.data.cta.title || ""}>
+            title={sectionData.data.cta.title || ""}
+          >
             <span className="flex items-center">
               {sectionData.data.cta.label || "null"}
               <LucideArrowRight size={24} />

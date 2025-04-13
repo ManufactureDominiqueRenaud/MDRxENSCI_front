@@ -17,6 +17,7 @@ export async function POST(req: Request) {
   } catch (error) {
     const errorMessage =
       error instanceof Error ? (error as Error).message : "Unknown error";
+    console.log(errorMessage);
     return NextResponse.json(
       { message: "Error revalidating tags", error: errorMessage },
       { status: 500 }

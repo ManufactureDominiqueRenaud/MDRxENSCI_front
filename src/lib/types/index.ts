@@ -13,9 +13,17 @@ export type StrapiComponentImage = {
   caption?: string;
   alternativeText?: string;
 };
+export type StrapiComponentVideo = {
+  width: number | null;
+  height: number | null;
+  url: string;
+  caption?: string | null;
+  alternativeText?: string | null;
+};
 
 //SECTIONS BLOCKS
 export type StrapiHomepageHeroheader = {
+  __component: "sections-homepage.hero-header";
   title: string;
   logo: {
     data: {
@@ -30,10 +38,12 @@ export type StrapiHomepageHeroheader = {
   };
 };
 export type StrapiAtelierProjet = {
+  __component: "sections-homepage.atelier-projet";
   title: string;
   paragraph: string;
 };
 export type StrapiCollaboration = {
+  __component: "sections-homepage.collab-section";
   logo: {
     data: {
       attributes: StrapiComponentImage;
@@ -45,6 +55,7 @@ export type StrapiCollaboration = {
   cta: StrapiComponentLink;
 };
 export type StrapiDominiqueCitation = {
+  __component: "sections-homepage.dominique-renaud-section";
   citation: string;
   name: string;
   paragraph: string;
@@ -55,6 +66,7 @@ export type StrapiDominiqueCitation = {
   };
 };
 export type StrapiCarouselHome = {
+  __component: "sections-homepage.carousel-section";
   title: string;
   carouselImages: {
     data: {
@@ -64,6 +76,7 @@ export type StrapiCarouselHome = {
   };
 };
 export type StrapiAProposMDR = {
+  __component: "sections-homepage.mdr-details";
   title: string;
   paragraph: string;
   image: {
@@ -71,4 +84,9 @@ export type StrapiAProposMDR = {
       attributes: StrapiComponentImage;
     };
   };
+};
+export type StrapiProjetsFolioSection = {
+  __component: "sections-homepage.project-folio";
+  title: string;
+  paragraph: string;
 };

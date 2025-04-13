@@ -1,14 +1,22 @@
-import { Manrope } from "next/font/google";
+import { Manrope, Marcellus } from "next/font/google";
 import "../globals.css";
 import ReturnToTop from "@/components/return-to-top";
 import Header from "@/components/sections/header";
 import Footer from "@/components/sections/footer";
 import { fetchStrapiData } from "@/lib/strapi-api";
 import { ScrollProgress } from "@/components/magicui/scroll-progress";
+import { Analytics } from "@vercel/analytics/react";
 
 const manrope = Manrope({
   weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
+  variable: '--font-manrope',
+});
+
+const marcellus = Marcellus({
+  weight: ["400"],
+  subsets: ["latin"],
+  variable: '--font-marcellus',
 });
 
 export default async function RootLayout({
@@ -41,7 +49,8 @@ export default async function RootLayout({
         <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body
-        className={`${manrope.className} antialiased relative text-[#253031] bg-[#CDDBDE]`}>
+        className={`${manrope.className} antialiased relative text-[#253031] bg-[#CDDBDE]`}
+      >
         <ReturnToTop />
         <ScrollProgress />
         <Header data={headerData} />
