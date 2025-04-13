@@ -47,7 +47,7 @@ function ProjectsFolio({
                     className="w-full h-[300px] object-cover group-hover/project:scale-105 group-hover/project:blur-sm transition-all duration-500"
                   />
                   <Button className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 opacity-0 group-hover/project:opacity-100 transition-all duration-500 group/projectbutton">
-                    Voir le projet
+                    {locale === "fr" ? "Voir le projet" : "See the project"}
                     <LucideArrowRight className="size-2 group-hover/projectbutton:ml-2 transition-all" />
                   </Button>
                 </div>

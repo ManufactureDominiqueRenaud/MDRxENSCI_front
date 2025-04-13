@@ -56,7 +56,6 @@ export default async function RootLayout({
         <Header data={headerData} />
         {children}
         <Footer data={footerData} />
-        <Analytics />
       </body>
     </html>
   );
