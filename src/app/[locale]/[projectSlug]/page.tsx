@@ -96,12 +96,12 @@ export default async function Page({ params }: any) {
   if (locale === "fr") {
     projectData = (await fetchStrapiData(
       `api/projets?locale=${locale}&filters[slug][$eq]=${projectSlug}&populate[content][populate][image]=*&populate[content][populate][image1]=*&populate[content][populate][image2]=*&populate[content][populate][video]=*&populate[studentList]=*`,
-      [`project-fr-${projectSlug}`]
+      [`projects-data`]
     )) as StrapiProjectPageData;
   } else {
     projectData = (await fetchStrapiData(
       `api/projets?locale=${locale}&filters[slug][$eq]=${projectSlug}&populate[content][populate][image]=*&populate[content][populate][image1]=*&populate[content][populate][image2]=*&populate[content][populate][video]=*&populate[studentList]=*`,
-      [`project-en-${projectSlug}`]
+      [`projects-data`]
     )) as StrapiProjectPageData;
   }
 

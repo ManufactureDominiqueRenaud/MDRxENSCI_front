@@ -92,6 +92,7 @@ export default async function Home({ params }: any) {
                   sectionData={item}
                   projects={projectsData.data}
                   locale={locale}
+                  key={index + item.__component}
                 />
               );
             case "sections-homepage.carousel-section":
