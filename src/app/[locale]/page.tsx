@@ -49,7 +49,7 @@ export type StrapiHomepageData = {
 
 //PAGE
 export default async function Home({ params }: any) {
-  const { locale } = params;
+  const { locale } = await params;
   let pageData: StrapiHomepageData;
   let projectsData: {
     data: StrapiProjectsListData;
@@ -96,9 +96,9 @@ export default async function Home({ params }: any) {
                 />
               );
             case "sections-homepage.carousel-section":
-              return <CarouselHome data={item} />;
+              return <CarouselHome data={item} key={index + item.__component} />;
             case "sections-homepage.mdr-details":
-              return <AProposMDR data={item} />;
+              return <AProposMDR data={item} key={index + item.__component} />;
             default:
               return null;
           }
