@@ -98,12 +98,12 @@ export default async function Page({ params }: any) {
   if (locale === "fr") {
     projectData = (await fetchStrapiData(
       `api/projets?locale=${locale}&filters[slug][$eq]=${projectSlug}&populate[content][populate][image]=*&populate[content][populate][image1]=*&populate[content][populate][image2]=*&populate[content][populate][video]=*&populate[studentList]=*`,
-      [`project-fr-${projectSlug}`]
+      [`projects-data`]
     )) as StrapiProjectPageData;
   } else {
     projectData = (await fetchStrapiData(
       `api/projets?locale=${locale}&filters[slug][$eq]=${projectSlug}&populate[content][populate][image]=*&populate[content][populate][image1]=*&populate[content][populate][image2]=*&populate[content][populate][video]=*&populate[studentList]=*`,
-      [`project-en-${projectSlug}`]
+      [`projects-data`]
     )) as StrapiProjectPageData;
   }
 
@@ -152,15 +152,15 @@ export default async function Page({ params }: any) {
         projectData.data[0].attributes.content.map((item, index) => {
           switch (item.__component) {
             case "projects-components.image-and-text-section":
-              return <ProjectsImageAndTextSection sectionData={item} />;
+              return <ProjectsImageAndTextSection sectionData={item} key={index + item.__component} />;
             case "projects-components.two-images-section":
-              return <ProjectsTwoImagesSection sectionData={item} />;
+              return <ProjectsTwoImagesSection sectionData={item} key={index + item.__component} />;
             case "projects-components.text-section":
-              return <ProjectsTextSection sectionData={item} />;
+              return <ProjectsTextSection sectionData={item} key={index + item.__component} />;
             case "projects-components.image-section":
-              return <ProjectsImageSection sectionData={item} />;
+              return <ProjectsImageSection sectionData={item} key={index + item.__component} />;
             case "projects-components.video-section":
-              return <ProjectsVideoSection sectionData={item} />;
+              return <ProjectsVideoSection sectionData={item} key={index + item.__component} />;
             default:
               return null;
           }

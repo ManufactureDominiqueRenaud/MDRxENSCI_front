@@ -2,7 +2,9 @@ import { revalidateTag } from "next/cache";
 import { fetchStrapiData } from "./strapi-api";
 
 export async function getAllProjectSlugs() {
-  const data = await fetchStrapiData(`api/projets?fields=slug`, ["projects-slugs"]);
+  const data = await fetchStrapiData(`api/projets?fields=slug`, [
+    "projects-slugs",
+  ]);
   const projectSlugs = [] as string[];
   data.data.forEach((item: any) => {
     projectSlugs.push(item.attributes.slug);
@@ -12,22 +14,32 @@ export async function getAllProjectSlugs() {
 }
 
 export async function revalidateAllTags() {
-  revalidateTag("header");
-  revalidateTag("header-fr");
-  revalidateTag("header-en");
-  revalidateTag("footer");
-  revalidateTag("footer-fr");
-  revalidateTag("footer-en");
-  revalidateTag("homepage");
-  revalidateTag("homepage-fr");
-  revalidateTag("homepage-en");
-  revalidateTag("projects-slugs");
-  revalidateTag("projects-fr")
-  revalidateTag("projects-en")
+  // Revalidation des tags globaux
+  const globalTags = [
+    "header",
+    "header-fr",
+    "header-en",
+    "footer",
+    "footer-fr",
+    "footer-en",
+    "homepage",
+    "homepage-fr",
+    "homepage-en",
+    "projects-slugs",
+    "projects-fr",
+    "projects-en",
+    "projects-data",
+  ];
 
-  const projectSlugs = await getAllProjectSlugs();
-  projectSlugs.forEach((slug: string) => {
-    revalidateTag(`project-fr-${slug}`);
-    revalidateTag(`project-en-${slug}`);
-  });
+  globalTags.forEach((tag) => revalidateTag(tag));
+
+  // // Revalidation des slugs des projets
+  // const projectSlugs = await getAllProjectSlugs();
+  // projectSlugs.forEach((slug: string) => {
+  //   revalidateTag(`projects/${slug}-fr`);
+  //   revalidateTag(`projects/${slug}-en`);
+
+  //   console.log(`Revalidating tag: projects/${slug}-fr`);
+  //   console.log(`Revalidating tag: projects/${slug}-en`);
+  // });
 }
