@@ -222,7 +222,7 @@ function VoteModule() {
         >
           <LucideChevronsLeft className="cursor-pointer size-4" />
           <p className="[writing-mode:vertical-lr] text-nowrap">
-            {locale === "fr" ? "Votre vote en attente" : "Your vote waiting"}
+            {locale === "fr" ? "Votre vote" : "Your vote"}
           </p>
           <LucideChevronsLeft className="cursor-pointer size-4" />
         </div>
