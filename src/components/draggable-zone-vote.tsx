@@ -85,50 +85,6 @@ export default function SortableList({
           </AnimatePresence>
         </Reorder.Group>
       </div>
-      <div className="p-1">
-        {items.length > 0 && items.length < 3 && (
-          <Card
-            className={`border border-[#253031]/20 bg-[#253031]/5 text-[#253031]/60 cursor-default transition-all duration-200 ease-in-out mt-3`}
-          >
-            <CardContent className="p-2 px-4 text-center">
-              {locale === "fr"
-                ? `Sélectionnez ${3 - items.length} autre${
-                    3 - items.length === 1 ? "" : "s"
-                  } projet${3 - items.length === 1 ? "" : "s"}`
-                : `Select ${3 - items.length} other${
-                    3 - items.length === 1 ? "" : "s"
-                  } project${3 - items.length === 1 ? "" : "s"}`}
-            </CardContent>
-          </Card>
-        )}
-        {items.length > 0 && (
-          <div className="flex justify-center mt-4 mb-2">
-            <Button
-              variant={"default"}
-              size={"lg"}
-              className="w-full bg-[#253031] hover:bg-[#253031]/90"
-              disabled={items.length < 3}
-            >
-              {locale === "fr" ? "Soumettre le vote" : "Submit vote"}
-            </Button>
-          </div>
-        )}
-        {items.length === 0 && (
-          <Card
-            className={`border border-[#253031]/80 text-[#253031] cursor-default bg-transparent transition-all duration-200 ease-in-out mt-3`}
-          >
-            <CardContent className="p-2 px-4 text-center text-xs">
-              {locale === "fr"
-                ? `Sélectionnez ${3 - items.length} autre${
-                    3 - items.length === 1 ? "" : "s"
-                  } projet${3 - items.length === 1 ? "" : "s"}`
-                : `Select ${3 - items.length} other${
-                    3 - items.length === 1 ? "" : "s"
-                  } project${3 - items.length === 1 ? "" : "s"}`}
-            </CardContent>
-          </Card>
-        )}
-      </div>
     </div>
   );
 }

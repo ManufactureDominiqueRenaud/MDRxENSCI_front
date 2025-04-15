@@ -32,7 +32,7 @@ function ProjectsFolio({
         {Array.isArray(projects) ? (
           projects.map((project, index) => (
             <div key={index} className="relative">
-              <Link href={`${locale}/${project.attributes.slug}`}>
+              <div>
                 <div className="overflow-hidden rounded-3xl mt-8 lg:mt-0 group/project relative">
                   <Image
                     width={
@@ -50,20 +50,36 @@ function ProjectsFolio({
                     className="w-full h-[300px] object-cover group-hover/project:scale-105 group-hover/project:blur-sm transition-all duration-100"
                   />
                   <div className="flex flex-col items-center gap-2 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 opacity-0 group-hover/project:opacity-100 transition-all duration-100">
-                    <Button className="transition-all duration-100 group/projectbutton">
-                      Voir le projet
-                      <LucideArrowRight className="size-2 group-hover/projectbutton:ml-2 transition-all" />
+                    <Button
+                      className="transition-all duration-100 group/projectbutton"
+                      asChild
+                    >
+                      <Link href={`${locale}/${project.attributes.slug}`}>
+                        {
+                          locale === "fr" ? (
+                            <span className="text-sm font-bold">
+                              Découvrir le projet
+                            </span>
+                          ) : (
+                            <span className="text-sm font-bold">
+                              Discover the project
+                            </span>
+                          )
+                        }
+                        <LucideArrowRight className="size-2 group-hover/projectbutton:ml-2 transition-all" />
+                      </Link>
                     </Button>
                     <VoteForProjectButton
                       label={project.attributes.voteForProjectCTA}
                       projectSlug={project.attributes.slug}
                       projectName={project.attributes.projectTitle}
                       locale={locale}
+                      size={"default"}
                       onClick={(event) => event.stopPropagation()}
                     />
                   </div>
                 </div>
-              </Link>
+              </div>
               <Link href={`${locale}/${project.attributes.slug}`}>
                 <p className="mt-4 font-bold hover:underline hover:opacity-90 hover:cursor-pointer inline-block">
                   {project.attributes.projectTitle}

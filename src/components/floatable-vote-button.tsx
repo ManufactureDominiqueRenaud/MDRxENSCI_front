@@ -42,6 +42,7 @@ function FloatableVoteButton({
 
   return (
     <div className="fixed bottom-8 right-1/2 translate-x-1/2 z-50">
+      
         <VoteForProjectButton
           label={projectData.data[0].attributes.voteForProjectCTA}
           projectSlug={projectData.data[0].attributes.slug}

@@ -111,7 +111,7 @@ export default async function Page({ params }: any) {
     <main>
       <section className="min-h-16 flex items-center lg:p-6 justify-center lg:justify-end pt-16 lg:mr-32 lg:ml-32 px-[20px] md:px-[70px] lg:px-[0px] relative lg:z-[70]">
         <Button variant={"link"} asChild>
-          <Link href={`/${locale}/#projects`}>
+          <Link href={`/${locale}/#projects`} className="relative z-[60]">
             <LucideArrowLeft className="h-3 w-3" />
             {projectData.data[0].attributes.returnToProjectsCTA}
           </Link>
@@ -125,7 +125,7 @@ export default async function Page({ params }: any) {
       </section>
       <section
         className={cn(
-          "py-[150px] lg:py-[192px] px-[20px] md:px-[70px] lg:px-[120px] gap-12 flex flex-col items-center"
+          "py-[100px] lg:py-[192px] px-[20px] md:px-[70px] lg:px-[120px] gap-12 flex flex-col items-center"
         )}
       >
         <div className="flex flex-col lg:flex-row items-center gap-4">
