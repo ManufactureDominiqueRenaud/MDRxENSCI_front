@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import DraggableZoneComponent from "./draggable-zone-vote";
 import { cn } from "@/lib/utils";
 import {
+  LucideCheck,
   LucideChevronsLeft,
   LucideChevronsRight,
   LucideInfo,
@@ -26,6 +27,7 @@ import {
   InputOTPSeparator,
   InputOTPSlot,
 } from "./ui/input-otp";
+import { toast, useToast } from "@/hooks/use-toast";
 
 function VoteModule() {
   const { locale } = useParams();
@@ -37,6 +39,9 @@ function VoteModule() {
   const [emailWaiting, setEmailWaiting] = useVoteRequestEmail();
   const [validationCode, setValidationCode] = useState<string>("");
   const [resendCooldown, setResendCooldown] = useState(0);
+  const [isVoteFinished, setIsVoteFinished] = useState(false);
+
+  const { toast } = useToast();
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -60,6 +65,33 @@ function VoteModule() {
     }
   };
 
+  const handleOTPCodeSubmit = () => {
+    if (validationCode.length === 6) {
+      setIsVoteFinished(true);
+      setValidationCode("");
+      toast({
+        title: locale === "fr" ? "Vote validé !" : "Vote validated!",
+        description:
+          locale === "fr"
+            ? "Merci de votre participation."
+            : "Thank you for your participation.",
+        variant: "default",
+      });
+
+      setTimeout(() => {
+        setIsVoteWaiting(false);
+        setEmailWaiting(null);
+        setResendCooldown(0);
+        setIsVoteFinished(false);
+        setItems([]);
+        setEmail("");
+        setSendingVote(false);
+        setValidationCode("");
+        setResendCooldown(0);
+      }, 5000);
+    }
+  };
+
   const handleResetVoteSubmit = () => {
     setItems([]);
     setEmailWaiting(null);
@@ -74,12 +106,30 @@ function VoteModule() {
     }
   };
 
+  if (isVoteFinished) {
+    return (
+      <div className="fixed top-20 right-[5svw] lg:right-6 z-[100] bg-white text-[#253031] border border-[#253031]/20 rounded-md w-[90svw] lg:w-[400px] p-4">
+        <LucideCheck className="size-16 text-green-500 mx-auto" />
+        <h2 className="text-lg font-bold text-center">
+          {locale === "fr" ? "Vote validé !" : "Vote validated!"}
+        </h2>
+        <p className="text-sm text-center mt-2">
+          {locale === "fr"
+            ? "Merci de votre participation."
+            : "Thank you for your participation."}
+        </p>
+      </div>
+    );
+  }
+
   if (isVoteWaiting)
     return (
       <>
         <div
           className={cn(
-            isPinned ? "fixed top-20 right-[5svw] lg:right-6" : "fixed top-20 -right-[100%]",
+            isPinned
+              ? "fixed top-20 right-[5svw] lg:right-6"
+              : "fixed top-20 -right-[100%]",
             "z-[100] bg-white text-[#253031] border border-[#253031]/20 rounded-md w-[90svw] lg:w-[400px] transition-all duration-500 ease-in-out"
           )}
         >
@@ -126,6 +176,8 @@ function VoteModule() {
                 variant={"default"}
                 size={"lg"}
                 className="hover:cursor-pointer w-full bg-[#253031] hover:bg-[#253031]/90"
+                disabled={validationCode.length !== 6 || isVoteFinished}
+                onClick={handleOTPCodeSubmit}
               >
                 {locale === "fr" ? "Valider mon vote" : "Validate my vote"}
               </Button>
@@ -181,7 +233,9 @@ function VoteModule() {
     <>
       <div
         className={cn(
-          isPinned ? "fixed top-20 right-[5svw] lg:right-6" : "fixed top-20 -right-[100%]",
+          isPinned
+            ? "fixed top-20 right-[5svw] lg:right-6"
+            : "fixed top-20 -right-[100%]",
           "z-[100] bg-white text-[#253031] border border-[#253031]/20 rounded-md w-[90svw] lg:w-[400px] transition-all duration-500 ease-in-out"
         )}
       >
@@ -218,9 +272,7 @@ function VoteModule() {
                 <Input
                   type="email"
                   placeholder={
-                    locale === "fr"
-                      ? "Entrez votre email"
-                      : "Enter your email"
+                    locale === "fr" ? "Entrez votre email" : "Enter your email"
                   }
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -244,17 +296,40 @@ function VoteModule() {
                     ? "Soumettre le vote"
                     : "Submit vote"}
                 </Button>
-                <p className="text-xs text-gray-500 text-center mt-2 flex flex-col items-center">{
-                  locale === "fr"
-                    ? (<>
-                    Vous recevrez un code de validation par email. <span className="underline">Votre email ne sera pas conservé.</span></>)
-                    : (
-                      <>You will receive a validation code by email. <span className="underline">Your email will not be stored.</span></>)}
+                <p className="text-xs text-gray-500 text-center mt-2 flex flex-col items-center">
+                  {locale === "fr" ? (
+                    <>
+                      Vous recevrez un code de validation par email.{" "}
+                      <span className="underline">
+                        Votre email ne sera pas conservé.
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      You will receive a validation code by email.{" "}
+                      <span className="underline">
+                        Your email will not be stored.
+                      </span>
+                    </>
+                  )}
                 </p>
               </div>
             )}
           </div>
         </div>
+      </div>
+      <div
+        className={cn(
+          isPinned ? "fixed top-20 -right-[100%]" : "fixed top-20 right-0",
+          "flex flex-col gap-4 p-2 hover:pr-6 z-[60] bg-[#ffffff] text-[#253031] border border-[#253031]/20 rounded-l-md transition-all duration-500 ease-in-out cursor-pointer"
+        )}
+        onClick={() => setIsPinned(!isPinned)}
+      >
+        <LucideChevronsLeft className="cursor-pointer size-4" />
+        <p className="[writing-mode:vertical-lr]">
+          {locale === "fr" ? "Votre sélection" : "Your selection"}
+        </p>
+        <LucideChevronsLeft className="cursor-pointer size-4" />
       </div>
     </>
   );
