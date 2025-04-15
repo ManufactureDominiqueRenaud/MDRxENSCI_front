@@ -14,6 +14,7 @@ import ProjectsVideoSection, {
   StrapiProjectVideoSection,
 } from "@/components/sections/projectsPage/projects-video-section";
 import { Button } from "@/components/ui/button";
+import VoteForProjectButton from "@/components/vote-for-project-button";
 import { getAllProjectSlugs } from "@/lib/revalidate";
 import { fetchStrapiData } from "@/lib/strapi-api";
 import { StrapiComponentImage } from "@/lib/types";
@@ -44,6 +45,7 @@ export type StrapiProjectPageData = {
   data: {
     id: number;
     attributes: {
+      slug: string;
       projectTitle: string;
       projectDesc: string;
       voteForProjectCTA: string;
@@ -107,7 +109,7 @@ export default async function Page({ params }: any) {
 
   return (
     <main>
-      <section className="min-h-16 flex items-center lg:p-6 justify-center lg:justify-end pt-16 lg:mr-32 lg:ml-32 px-[20px] md:px-[70px] lg:px-[0px] relative lg:z-50">
+      <section className="min-h-16 flex items-center lg:p-6 justify-center lg:justify-end pt-16 lg:mr-32 lg:ml-32 px-[20px] md:px-[70px] lg:px-[0px] relative lg:z-[70]">
         <Button variant={"link"} asChild>
           <Link href={`/${locale}/#projects`}>
             <LucideArrowLeft className="h-3 w-3" />
@@ -169,12 +171,12 @@ export default async function Page({ params }: any) {
           "py-[150px] lg:py-[192px] px-[20px] md:px-[70px] lg:px-[120px] gap-12 flex flex-col items-center"
         )}
       >
-        {/* <Button variant={"default"} size={"lg"} asChild>
-          <Link href={`/${locale}/#projects`}>
-            {projectData.data[0].attributes.voteForProjectCTA}
-            <LucidePlus className="h-3 w-3" />
-          </Link>
-        </Button> */}
+        <VoteForProjectButton
+          label={projectData.data[0].attributes.voteForProjectCTA}
+          projectSlug={projectData.data[0].attributes.slug}
+          projectName={projectData.data[0].attributes.projectTitle}
+          locale={locale}
+        />
         <h1 className="text-4xl lg:text-6xl font-bold text-center text-balance w-full md:w-2/3 marcellus-regular">
           {projectData.data[0].attributes.projectTitle}
         </h1>
