@@ -221,7 +221,7 @@ function VoteModule() {
           onClick={() => setIsPinned(!isPinned)}
         >
           <LucideChevronsLeft className="cursor-pointer size-4" />
-          <p className="[writing-mode:vertical-lr]">
+          <p className="[writing-mode:vertical-lr] text-nowrap">
             {locale === "fr" ? "Votre vote en attente" : "Your vote waiting"}
           </p>
           <LucideChevronsLeft className="cursor-pointer size-4" />
@@ -326,7 +326,7 @@ function VoteModule() {
         onClick={() => setIsPinned(!isPinned)}
       >
         <LucideChevronsLeft className="cursor-pointer size-4" />
-        <p className="[writing-mode:vertical-lr]">
+        <p className="[writing-mode:vertical-lr] text-nowrap">
           {locale === "fr" ? "Votre sélection" : "Your selection"}
         </p>
         <LucideChevronsLeft className="cursor-pointer size-4" />
