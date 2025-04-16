@@ -152,16 +152,22 @@ function VoteModule() {
           setResendCooldown(0);
           setIsVoteFinished(true);
           setSendingVote(false);
-          setItems([]);
           setValidationCode("");
+          setEmail("");
+          setIsPinned(false);
           toast({
             title: locale === "fr" ? "Vote validé !" : "Vote validated!",
             description:
-              locale === "fr"
-                ? "Merci de votre participation."
-                : "Thank you for your participation.",
+            locale === "fr"
+            ? "Merci de votre participation."
+            : "Thank you for your participation.",
             variant: "default",
           });
+          setTimeout(() => {
+            setIsVoteFinished(false);
+            setItems([]);
+          }
+          , 3000);
         } else {
           toast({
             title: locale === "fr" ? "Erreur" : "Error",
