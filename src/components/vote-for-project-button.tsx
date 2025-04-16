@@ -13,6 +13,7 @@ function VoteForProjectButton({
   label,
   projectSlug,
   projectName,
+  projectThumbnail,
   locale,
   size,
   onClick, // Add this line
@@ -20,6 +21,7 @@ function VoteForProjectButton({
   label: string;
   projectSlug: string;
   projectName: string;
+  projectThumbnail: string;
   locale?: string;
   size?: ButtonProps["size"];
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void; // Add this line
@@ -67,6 +69,7 @@ function VoteForProjectButton({
       {
         slug: projectSlug.toString(),
         name: projectName,
+        image: projectThumbnail,
       },
     ]);
   };

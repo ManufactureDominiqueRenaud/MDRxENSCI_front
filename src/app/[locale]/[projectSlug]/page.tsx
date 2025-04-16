@@ -175,6 +175,7 @@ export default async function Page({ params }: any) {
           label={projectData.data[0].attributes.voteForProjectCTA}
           projectSlug={projectData.data[0].attributes.slug}
           projectName={projectData.data[0].attributes.projectTitle}
+          projectThumbnail={projectData.data[0].attributes.thumbnail.data.attributes.url}
           locale={locale}
         />
         <h1 className="text-4xl lg:text-6xl font-bold text-center text-balance w-full md:w-2/3 marcellus-regular">

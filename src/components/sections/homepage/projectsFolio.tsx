@@ -55,17 +55,15 @@ function ProjectsFolio({
                       asChild
                     >
                       <Link href={`${locale}/${project.attributes.slug}`}>
-                        {
-                          locale === "fr" ? (
-                            <span className="text-sm font-bold">
-                              Découvrir le projet
-                            </span>
-                          ) : (
-                            <span className="text-sm font-bold">
-                              Discover the project
-                            </span>
-                          )
-                        }
+                        {locale === "fr" ? (
+                          <span className="text-sm font-bold">
+                            Découvrir le projet
+                          </span>
+                        ) : (
+                          <span className="text-sm font-bold">
+                            Discover the project
+                          </span>
+                        )}
                         <LucideArrowRight className="size-2 group-hover/projectbutton:ml-2 transition-all" />
                       </Link>
                     </Button>
@@ -73,6 +71,9 @@ function ProjectsFolio({
                       label={project.attributes.voteForProjectCTA}
                       projectSlug={project.attributes.slug}
                       projectName={project.attributes.projectTitle}
+                      projectThumbnail={
+                        project.attributes.thumbnail.data.attributes.url
+                      }
                       locale={locale}
                       size={"default"}
                       onClick={(event) => event.stopPropagation()}

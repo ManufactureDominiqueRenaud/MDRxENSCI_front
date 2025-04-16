@@ -53,43 +53,138 @@ function VoteModule() {
 
   if (items.length === 0) return null;
 
-  const handleVoteSubmit = () => {
-    if (email) {
-      setSendingVote(true);
-      setTimeout(() => {
+  const handleVoteSubmit = async () => {
+    setSendingVote(true);
+
+    //Fetch API to send the vote
+    const projectsSelectedSlugs = items.map((item) => item.slug);
+    const projectsImages = items.map((item) => item.image);
+    const voteData = {
+      email: email,
+      slugs: projectsSelectedSlugs,
+      images: projectsImages,
+    };
+    console.log("Vote data:", voteData);
+    await fetch(
+      "https://mdr-x-ensci-backoffice.vercel.app/api/votes/createVote",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(voteData),
+      }
+    )
+      .then((response) => {
+        console.log(response);
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Response data:", data);
+        if (data.data.email === email) {
+          toast({
+            title: locale === "fr" ? "Vote envoyé !" : "Vote sent!",
+            description:
+              locale === "fr"
+                ? "Un code de validation a été envoyé à votre adresse email."
+                : "A validation code has been sent to your email address.",
+            variant: "default",
+          });
+          setSendingVote(false);
+          setEmailWaiting(email);
+          setIsVoteWaiting(true);
+          setResendCooldown(60);
+        } else {
+          toast({
+            title: locale === "fr" ? "Erreur" : "Error",
+            description:
+              locale === "fr"
+                ? "Une erreur s'est produite lors de l'envoi du vote."
+                : "An error occurred while sending the vote.",
+            variant: "destructive",
+          });
+          setSendingVote(false);
+          return null;
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error.message);
+        toast({
+          title: locale === "fr" ? "Erreur" : "Error",
+          description:
+            locale === "fr"
+              ? "Une erreur s'est produite lors de l'envoi du vote."
+              : "An error occurred while sending the vote.",
+          variant: "destructive",
+        });
         setSendingVote(false);
-        setEmailWaiting(email);
-        setIsVoteWaiting(true);
-        setResendCooldown(60);
-      }, 500);
-    }
+        return;
+      });
   };
 
-  const handleOTPCodeSubmit = () => {
-    if (validationCode.length === 6) {
-      setIsVoteFinished(true);
-      setValidationCode("");
-      toast({
-        title: locale === "fr" ? "Vote validé !" : "Vote validated!",
-        description:
-          locale === "fr"
-            ? "Merci de votre participation."
-            : "Thank you for your participation.",
-        variant: "default",
-      });
+  const handleOTPCodeSubmit = async () => {
+    setSendingVote(true);
 
-      setTimeout(() => {
-        setIsVoteWaiting(false);
-        setEmailWaiting(null);
-        setResendCooldown(0);
-        setIsVoteFinished(false);
-        setItems([]);
-        setEmail("");
+    const confirmOTPData = {
+      email: emailWaiting,
+      code: validationCode,
+    };
+    console.log("Confirm OTP data:", confirmOTPData);
+    await fetch(
+      "https://mdr-x-ensci-backoffice.vercel.app/api/votes/confirmVote",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(confirmOTPData),
+      }
+    )
+      .then((response) => {
+        console.log(response);
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Response data:", data);
+        if (data.message === "Vote confirmé avec succès.") {
+          setIsVoteWaiting(false);
+          setEmailWaiting(null);
+          setResendCooldown(0);
+          setIsVoteFinished(true);
+          setSendingVote(false);
+          setItems([]);
+          setValidationCode("");
+          toast({
+            title: locale === "fr" ? "Vote validé !" : "Vote validated!",
+            description:
+              locale === "fr"
+                ? "Merci de votre participation."
+                : "Thank you for your participation.",
+            variant: "default",
+          });
+        } else {
+          toast({
+            title: locale === "fr" ? "Erreur" : "Error",
+            description: locale === "fr" ? data.error : "An error occured.",
+            variant: "destructive",
+          });
+          setSendingVote(false);
+
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error.message);
+        toast({
+          title: locale === "fr" ? "Erreur" : "Error",
+          description:
+            locale === "fr"
+              ? "Une erreur s'est produite lors de la validation du vote."
+              : "An error occurred while validating the vote.",
+          variant: "destructive",
+        });
         setSendingVote(false);
-        setValidationCode("");
-        setResendCooldown(0);
-      }, 5000);
-    }
+
+      });
   };
 
   const handleResetVoteSubmit = () => {
@@ -176,10 +271,15 @@ function VoteModule() {
                 variant={"default"}
                 size={"lg"}
                 className="hover:cursor-pointer w-full bg-[#253031] hover:bg-[#253031]/90"
-                disabled={validationCode.length !== 6 || isVoteFinished}
+                disabled={
+                  validationCode.length !== 6 || isVoteFinished || sendingVote
+                }
                 onClick={handleOTPCodeSubmit}
               >
                 {locale === "fr" ? "Valider mon vote" : "Validate my vote"}
+                {sendingVote && (
+                  <LucideLoader className="animate-spin mr-0.5" />
+                )}
               </Button>
               <Button
                 variant={"outline"}
