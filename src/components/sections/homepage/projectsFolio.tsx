@@ -7,6 +7,7 @@ import { StrapiProjetsFolioSection } from "@/lib/types";
 import { LucideArrowRight, LucideHeart, LucidePlus } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 function ProjectsFolio({
   sectionData,
@@ -22,6 +23,14 @@ function ProjectsFolio({
   projects: StrapiProjectsListData;
   locale: string;
 }) {
+  const [projectList, setProjectList] = useState<StrapiProjectsListData>([])
+
+  useEffect(() => {
+  const projectsToMap : StrapiProjectsListData = [...projects].sort(() => Math.random() - 0.5);
+  setProjectList(projectsToMap)
+  }
+  , [projects])
+
   return (
     <section
       className="py-[150px] lg:py-[192px] px-[20px] md:px-[70px] lg:px-[120px]"
@@ -35,7 +44,7 @@ function ProjectsFolio({
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-12 gap-8">
         {Array.isArray(projects) ? (
-          projects.map((project, index) => (
+          projectList.map((project, index) => (
             <div key={index} className="relative">
               <div>
                 <div className="overflow-hidden rounded-3xl mt-8 lg:mt-0 group/project relative">
@@ -116,9 +125,9 @@ function ProjectsFolio({
                   })}
                 </div>
                 {/* <Button className="text-xs rounded-full" size={"sm"}>
-                  <LucidePlus className="size-2" />
-                  Voter pour ce projet
-                </Button> */}
+              <LucidePlus className="size-2" />
+              Voter pour ce projet
+            </Button> */}
               </div>
             </div>
           ))
