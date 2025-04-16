@@ -73,6 +73,26 @@ export default async function Home({ params }: any) {
     ]);
   }
 
+  let voteCounts: {
+    projectSlug: string;
+    voteCount: number;
+  }[] = [];
+  const response = await fetch(
+    `${process.env.BACKOFFICE_URL}/api/votes/getAll`,
+    {
+      next: {
+        revalidate: 3600, // Revalidation toutes les heures
+      },
+    }
+  );
+  const json = await response.json();
+  if (json && json.data) {
+    voteCounts = json.data.map((item: any) => ({
+      projectSlug: item.id,
+      voteCount: item.votes,
+    }));
+  }
+
   return (
     <main>
       {pageData.data[0].attributes.sections &&
@@ -81,22 +101,31 @@ export default async function Home({ params }: any) {
             case "sections-homepage.hero-header":
               return <HeroHeader data={item} key={index + item.__component} />;
             case "sections-homepage.atelier-projet":
-              return <AtelierProjet data={item} key={index + item.__component} />;
+              return (
+                <AtelierProjet data={item} key={index + item.__component} />
+              );
             case "sections-homepage.collab-section":
-              return <Collaboration data={item} key={index + item.__component} />;
+              return (
+                <Collaboration data={item} key={index + item.__component} />
+              );
             case "sections-homepage.dominique-renaud-section":
-              return <DominiqueCitation data={item} key={index + item.__component} />;
+              return (
+                <DominiqueCitation data={item} key={index + item.__component} />
+              );
             case "sections-homepage.project-folio":
               return (
                 <ProjectsFolio
                   sectionData={item}
                   projects={projectsData.data}
+                  voteCounts={voteCounts}
                   locale={locale}
                   key={index + item.__component}
                 />
               );
             case "sections-homepage.carousel-section":
-              return <CarouselHome data={item} key={index + item.__component} />;
+              return (
+                <CarouselHome data={item} key={index + item.__component} />
+              );
             case "sections-homepage.mdr-details":
               return <AProposMDR data={item} key={index + item.__component} />;
             default:

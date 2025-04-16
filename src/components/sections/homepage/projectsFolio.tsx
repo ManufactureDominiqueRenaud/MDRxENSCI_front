@@ -4,16 +4,21 @@ import { StrapiProjectsListData } from "@/app/[locale]/[projectSlug]/page";
 import { Button } from "@/components/ui/button";
 import VoteForProjectButton from "@/components/vote-for-project-button";
 import { StrapiProjetsFolioSection } from "@/lib/types";
-import { LucideArrowRight, LucidePlus } from "lucide-react";
+import { LucideArrowRight, LucideHeart, LucidePlus } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 function ProjectsFolio({
   sectionData,
+  voteCounts,
   projects,
   locale,
 }: {
   sectionData: StrapiProjetsFolioSection;
+  voteCounts: {
+    projectSlug: string;
+    voteCount: number;
+  }[];
   projects: StrapiProjectsListData;
   locale: string;
 }) {
@@ -81,11 +86,22 @@ function ProjectsFolio({
                   </div>
                 </div>
               </div>
-              <Link href={`${locale}/${project.attributes.slug}`}>
-                <p className="mt-4 font-bold hover:underline hover:opacity-90 hover:cursor-pointer inline-block">
-                  {project.attributes.projectTitle}
-                </p>
-              </Link>
+              <div className="flex items-center justify-between">
+                <Link href={`${locale}/${project.attributes.slug}`}>
+                  <p className="mt-4 font-bold hover:underline hover:opacity-90 hover:cursor-pointer inline-block">
+                    {project.attributes.projectTitle}
+                  </p>
+                </Link>
+                <div className="flex gap-1 items-center mt-2">
+                  <LucideHeart className="inline size-4" />
+                  <span className="text-sm font-bold">
+                    {voteCounts.find(
+                      (vote: { projectSlug: string; voteCount: number }) =>
+                        vote.projectSlug === project.attributes.slug
+                    )?.voteCount || 0}
+                  </span>
+                </div>
+              </div>
               <div className="flex gap-2 justify-between mt-2">
                 <div className="flex gap-2">
                   {project.attributes.studentList.map((student) => {
