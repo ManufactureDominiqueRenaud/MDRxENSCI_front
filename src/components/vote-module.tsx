@@ -63,6 +63,7 @@ function VoteModule() {
       email: email,
       slugs: projectsSelectedSlugs,
       images: projectsImages,
+      locale: locale,
     };
     console.log("Vote data:", voteData);
     await fetch(
