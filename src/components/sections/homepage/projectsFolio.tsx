@@ -72,7 +72,7 @@ function ProjectsFolio({
                       projectSlug={project.attributes.slug}
                       projectName={project.attributes.projectTitle}
                       projectThumbnail={
-                        project.attributes.thumbnail.data.attributes.url
+                        project.attributes.thumbnail?.data.attributes.url || ""
                       }
                       locale={locale}
                       size={"default"}
