@@ -41,6 +41,12 @@ function ProjectsFolio({
           {sectionData.title}
         </h2>
         <p className="mt-4">{sectionData.paragraph}</p>
+        {sectionData.paragraph2 && (
+          <p className="mt-4">{sectionData.paragraph2}</p>
+        )}
+        {sectionData.paragraph3 && (
+          <p className="mt-4">{sectionData.paragraph3}</p>
+        )}
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-12 gap-8">
         {Array.isArray(projects) ? (
