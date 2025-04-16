@@ -35,6 +35,7 @@ function VoteModule() {
   const [items, setItems] = useAtom(useSelectedProjectsToVote);
   const [email, setEmail] = useState("");
   const [sendingVote, setSendingVote] = useState(false);
+  const [reSendingCode, setReSendingCode] = useState(false);
   const [isVoteWaiting, setIsVoteWaiting] = useIsVoteWaitingCode();
   const [emailWaiting, setEmailWaiting] = useVoteRequestEmail();
   const [validationCode, setValidationCode] = useState<string>("");
@@ -159,16 +160,15 @@ function VoteModule() {
           toast({
             title: locale === "fr" ? "Vote validé !" : "Vote validated!",
             description:
-            locale === "fr"
-            ? "Merci de votre participation."
-            : "Thank you for your participation.",
+              locale === "fr"
+                ? "Merci de votre participation."
+                : "Thank you for your participation.",
             variant: "default",
           });
           setTimeout(() => {
             setIsVoteFinished(false);
             setItems([]);
-          }
-          , 3000);
+          }, 3000);
         } else {
           toast({
             title: locale === "fr" ? "Erreur" : "Error",
@@ -176,7 +176,6 @@ function VoteModule() {
             variant: "destructive",
           });
           setSendingVote(false);
-
         }
       })
       .catch((error) => {
@@ -190,11 +189,23 @@ function VoteModule() {
           variant: "destructive",
         });
         setSendingVote(false);
-
       });
   };
 
-  const handleResetVoteSubmit = () => {
+  const handleResetVoteSubmit = async () => {
+    const resetVoteData = {
+      email: emailWaiting,
+    };
+    await fetch(
+      "https://mdr-x-ensci-backoffice.vercel.app/api/votes/deleteVote",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(resetVoteData),
+      }
+    );
     setItems([]);
     setEmailWaiting(null);
     setIsVoteWaiting(false);
@@ -202,10 +213,27 @@ function VoteModule() {
     setResendCooldown(0);
   };
 
-  const handleResendCode = () => {
+  const handleResendCode = async () => {
+    setReSendingCode(true);
+    const resetVoteData = {
+      email: emailWaiting,
+      images: items.map((item) => item.image),
+      locale: locale,
+    };
+    await fetch(
+      "https://mdr-x-ensci-backoffice.vercel.app/api/votes/resendCode",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(resetVoteData),
+      }
+    );
     if (resendCooldown === 0) {
       setResendCooldown(60);
     }
+    setReSendingCode(false);
   };
 
   if (isVoteFinished) {
@@ -251,6 +279,11 @@ function VoteModule() {
                 <strong>{" " + emailWaiting}</strong>
               </span>
             </p>
+            <p className="text-center text-xs mt-2 text-slate-900/50">
+              {locale === "fr"
+                ? "Verifiez vos courrier indésirables."
+                : "Check up your spams."}
+            </p>
           </div>
           <div className="w-2/3 h-px mx-auto bg-[#253031]/20 rounded-full mb-4" />
           <div className="w-full flex flex-col items-center justify-center px-4 pb-4">
@@ -293,15 +326,31 @@ function VoteModule() {
                 size={"lg"}
                 className="hover:cursor-pointer w-full"
                 onClick={handleResendCode}
-                disabled={resendCooldown > 0}
+                disabled={resendCooldown > 0 || reSendingCode}
               >
-                {resendCooldown > 0
-                  ? locale === "fr"
-                    ? `Renvoyer le code (${resendCooldown}s)`
-                    : `Resend code (${resendCooldown}s)`
-                  : locale === "fr"
-                  ? "Renvoyer le code"
-                  : "Resend code"}
+                {resendCooldown > 0 ? (
+                  locale === "fr" ? (
+                    `Renvoyer le code (${resendCooldown}s)`
+                  ) : (
+                    `Resend code (${resendCooldown}s)`
+                  )
+                ) : reSendingCode ? (
+                  locale === "fr" ? (
+                    <>
+                      <LucideLoader className="animate-spin mr-0.5" />
+                      Renvoi en cours...
+                    </>
+                  ) : (
+                    <>
+                      <LucideLoader className="animate-spin mr-0.5" />
+                      Resending...
+                    </>
+                  )
+                ) : locale === "fr" ? (
+                  "Renvoyer le code"
+                ) : (
+                  "Resend code"
+                )}
               </Button>
               {resendCooldown > 0 && (
                 <span className="text-xs text-gray-500">
