@@ -89,4 +89,6 @@ export type StrapiProjetsFolioSection = {
   __component: "sections-homepage.project-folio";
   title: string;
   paragraph: string;
+  paragraph2: string;
+  paragraph3: string;
 };
