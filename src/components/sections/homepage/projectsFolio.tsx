@@ -11,15 +11,15 @@ import { useEffect, useState } from "react";
 
 function ProjectsFolio({
   sectionData,
-  voteCounts,
+  // voteCounts,
   projects,
   locale,
 }: {
   sectionData: StrapiProjetsFolioSection;
-  voteCounts: {
-    projectSlug: string;
-    voteCount: number;
-  }[];
+  // voteCounts: {
+  //   projectSlug: string;
+  //   voteCount: number;
+  // }[];
   projects: StrapiProjectsListData;
   locale: string;
 }) {
@@ -107,7 +107,7 @@ function ProjectsFolio({
                     {project.attributes.projectTitle}
                   </p>
                 </Link>
-                <div className="flex gap-1 items-center mt-2">
+                {/* <div className="flex gap-1 items-center mt-2">
                   <LucideHeart className="inline size-4" />
                   <span className="text-sm font-bold">
                     {voteCounts.find(
@@ -115,7 +115,7 @@ function ProjectsFolio({
                         vote.projectSlug === project.attributes.slug
                     )?.voteCount || 0}
                   </span>
-                </div>
+                </div> */}
               </div>
               <div className="flex gap-2 justify-between mt-2">
                 <div className="flex gap-2">
