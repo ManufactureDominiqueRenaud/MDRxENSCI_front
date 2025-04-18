@@ -73,25 +73,25 @@ export default async function Home({ params }: any) {
     ]);
   }
 
-  let voteCounts: {
-    projectSlug: string;
-    voteCount: number;
-  }[] = [];
-  const response = await fetch(
-    `${process.env.BACKOFFICE_URL}/api/votes/getAll`,
-    {
-      next: {
-        revalidate: 3600, // Revalidation toutes les heures
-      },
-    }
-  );
-  const json = await response.json();
-  if (json && json.data) {
-    voteCounts = json.data.map((item: any) => ({
-      projectSlug: item.id,
-      voteCount: item.votes,
-    }));
-  }
+  // let voteCounts: {
+  //   projectSlug: string;
+  //   voteCount: number;
+  // }[] = [];
+  // const response = await fetch(
+  //   `${process.env.BACKOFFICE_URL}/api/votes/getAll`,
+  //   {
+  //     next: {
+  //       revalidate: 3600, // Revalidation toutes les heures
+  //     },
+  //   }
+  // );
+  // const json = await response.json();
+  // if (json && json.data) {
+  //   voteCounts = json.data.map((item: any) => ({
+  //     projectSlug: item.id,
+  //     voteCount: item.votes,
+  //   }));
+  // }
 
   return (
     <main>
@@ -117,7 +117,7 @@ export default async function Home({ params }: any) {
                 <ProjectsFolio
                   sectionData={item}
                   projects={projectsData.data}
-                  voteCounts={voteCounts}
+                  // voteCounts={voteCounts}
                   locale={locale}
                   key={index + item.__component}
                 />
