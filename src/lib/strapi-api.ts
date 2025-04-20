@@ -6,11 +6,11 @@ export async function fetchStrapiData(endpoint: string, tags: string[]) {
       {
         next: {
           tags: tags, // Cache avec les tags pour les données de Strapi
-          revalidate: 86400, // Revalidation toutes les 86400 secondes (1jour)
+          revalidate: 345600, // Revalidation toutes les 345600 secondes (4jour)
         },
         headers: {
           "Cache-Control":
-            "public, max-age=86400, stale-while-revalidate=86400",
+            "public, max-age=345600, stale-while-revalidate=345600",
         },
       }
     );
