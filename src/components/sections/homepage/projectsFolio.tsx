@@ -87,7 +87,7 @@ function ProjectsFolio({
                         <LucideArrowRight className="size-2 group-hover/projectbutton:ml-2 transition-all" />
                       </Link>
                     </Button>
-                    <VoteForProjectButton
+                    {/* <VoteForProjectButton
                       label={project.attributes.voteForProjectCTA}
                       projectSlug={project.attributes.slug}
                       projectName={project.attributes.projectTitle}
@@ -97,7 +97,7 @@ function ProjectsFolio({
                       locale={locale}
                       size={"default"}
                       onClick={(event) => event.stopPropagation()}
-                    />
+                    /> */}
                   </div>
                 </div>
               </div>

@@ -54,7 +54,7 @@ export default async function RootLayout({
         className={`${manrope.className} antialiased relative text-[#253031] bg-[#CDDBDE]`}
       >
         <ReturnToTop />
-        <VoteModule />
+        {/* <VoteModule /> */}
         <ScrollProgress />
         <Header data={headerData} />
         {children}
