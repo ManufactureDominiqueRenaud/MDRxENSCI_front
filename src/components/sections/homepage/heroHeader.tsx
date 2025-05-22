@@ -74,6 +74,10 @@ function HeroHeader(sectionData: { data: StrapiHomepageHeroheader }) {
                 height={1080}
                 className="absolute z-0 top-0 left-0 h-full w-full object-cover"
               />
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex items-center gap-4">
+                <div className="bg-slate-200 w-4 h-2 rounded-full"></div>
+                <div className="bg-slate-700 w-2 h-2 rounded-full"></div>
+              </div>
             </div>
           </CarouselItem>
           <CarouselItem>
@@ -116,6 +120,10 @@ function HeroHeader(sectionData: { data: StrapiHomepageHeroheader }) {
                 height={1080}
                 className="absolute z-0 top-0 left-0 h-full w-full object-cover"
               />
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex items-center gap-4">
+                <div className="bg-slate-500 w-2 h-2 rounded-full"></div>
+                <div className="bg-slate-200 w-4 h-2 rounded-full"></div>
+              </div>
             </div>
           </CarouselItem>
         </CarouselContent>
