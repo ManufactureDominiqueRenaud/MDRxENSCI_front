@@ -43,7 +43,7 @@ function HeroHeader(sectionData: { data: StrapiHomepageHeroheader }) {
                   height={sectionData.data.logo.data.attributes.height || 100}
                   className="w-48 lg:w-64 mb-8"
                 />
-                <p className="text-2xl lg:text-4xl text-[#CDDBDE] font-bold text-center uppercase w-[90svw] marcellus-regular px-4 ">
+                <p className="text-4xl lg:text-6xl text-[#CDDBDE] font-bold text-center uppercase w-[90svw] marcellus-regular px-4 ">
                   Congratulations to Memento vivere
                 </p>
                 <p className="text-4xl lg:text-6xl text-[#CDDBDE] font-bold text-center w-[90svw] marcellus-regular">
