@@ -1,4 +1,4 @@
-"use server";
+"use client";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -13,17 +13,22 @@ import { LucideArrowDown } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { motion } from "framer-motion";
+import Autoplay from "embla-carousel-autoplay";
 
 function HeroHeader(sectionData: { data: StrapiHomepageHeroheader }) {
   return (
     <section>
       <Carousel
-        className="relative h-screen flex flex-col justify-center items-center"
+        className="relative h-screen max-w-screen overflow-hidden flex flex-col justify-center items-center"
         opts={{
           align: "start",
           loop: true,
         }}
+        plugins={[
+          Autoplay({
+            delay: 6000,
+          }),
+        ]}
       >
         <CarouselContent>
           <CarouselItem>
@@ -38,10 +43,10 @@ function HeroHeader(sectionData: { data: StrapiHomepageHeroheader }) {
                   height={sectionData.data.logo.data.attributes.height || 100}
                   className="w-48 lg:w-64 mb-8"
                 />
-                <p className="text-2xl lg:text-4xl text-[#CDDBDE] font-bold text-center uppercase w-full marcellus-regular">
+                <p className="text-2xl lg:text-4xl text-[#CDDBDE] font-bold text-center uppercase w-[90svw] marcellus-regular px-4 ">
                   Congratulations to Memento vivere
                 </p>
-                <p className="text-4xl lg:text-6xl text-[#CDDBDE] font-bold text-center w-full marcellus-regular">
+                <p className="text-4xl lg:text-6xl text-[#CDDBDE] font-bold text-center w-[90svw] marcellus-regular">
                   2025 edition winner
                 </p>
                 <Button variant={"outlineCustom"} className="mt-8" asChild>
@@ -83,7 +88,7 @@ function HeroHeader(sectionData: { data: StrapiHomepageHeroheader }) {
                   height={sectionData.data.logo.data.attributes.height || 100}
                   className="w-48 lg:w-64 mb-8"
                 />
-                <h1 className="text-4xl lg:text-6xl text-[#CDDBDE] font-bold text-center w-full md:w-2/3 marcellus-regular">
+                <h1 className="text-4xl lg:text-6xl text-[#CDDBDE] font-bold text-center w-[90svw] md:w-2/3 marcellus-regular">
                   {sectionData.data.title || "null"}
                 </h1>
                 <Button variant={"outlineCustom"} className="mt-8" asChild>
@@ -114,8 +119,6 @@ function HeroHeader(sectionData: { data: StrapiHomepageHeroheader }) {
             </div>
           </CarouselItem>
         </CarouselContent>
-        <CarouselPrevious className="absolute left-8 top-1/2 -translate-y-1/2 z-[100] bg-transparent text-white/50 border-white/50" />
-        <CarouselNext className="absolute right-8 top-1/2 -translate-y-1/2 z-[100] bg-transparent text-white/50 border-white/50" />
       </Carousel>
     </section>
   );
