@@ -43,10 +43,10 @@ function HeroHeader(sectionData: { data: StrapiHomepageHeroheader }) {
                   height={sectionData.data.logo.data.attributes.height || 100}
                   className="w-48 lg:w-64 mb-8"
                 />
-                <p className="text-4xl lg:text-6xl text-[#CDDBDE] font-bold text-center uppercase w-[90svw] marcellus-regular px-4 ">
+                <p className="text-3xl lg:text-5xl text-[#CDDBDE] font-bold text-center uppercase w-[90svw] marcellus-regular px-4 ">
                   Congratulations to Memento vivere
                 </p>
-                <p className="text-4xl lg:text-6xl text-[#CDDBDE] font-bold text-center w-[90svw] marcellus-regular">
+                <p className="text-3xl lg:text-5xl text-[#CDDBDE] font-bold text-center w-[90svw] marcellus-regular">
                   2025 edition winner
                 </p>
                 <Button variant={"outlineCustom"} className="mt-8" asChild>
