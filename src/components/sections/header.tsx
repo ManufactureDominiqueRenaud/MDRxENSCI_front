@@ -10,14 +10,8 @@ type StrapiHeaderData = {
   data: {
     data: {
       id: number;
-      attributes: {
-        title: string;
-        logo: {
-          data: {
-            attributes: StrapiComponentImage;
-          };
-        };
-      };
+      title: string;
+      logo: StrapiComponentImage;
     };
   };
 };
@@ -41,19 +35,13 @@ export default function Header(headerData: StrapiHeaderData) {
       <div
         title="Retour à la homepage"
         onClick={handleLogoClick}
-        className="w-[60px] lg:w-[85px] bg-[#ffffff] border border-[#253031]/20 p-1.5 rounded-sm shadow-ring cursor-pointer">
+        className="w-[60px] lg:w-[85px] bg-[#ffffff] border border-[#253031]/20 p-1.5 rounded-sm shadow-ring cursor-pointer"
+      >
         <Image
-          src={headerData.data.data.attributes.logo.data.attributes.url || ""}
-          alt={
-            headerData.data.data.attributes.logo.data.attributes
-              .alternativeText || ""
-          }
-          width={
-            headerData.data.data.attributes.logo.data.attributes.width || 100
-          }
-          height={
-            headerData.data.data.attributes.logo.data.attributes.height || 100
-          }
+          src={headerData.data.data.logo.url || ""}
+          alt={headerData.data.data.logo.alternativeText || ""}
+          width={headerData.data.data.logo.width || 100}
+          height={headerData.data.data.logo.height || 100}
           style={{ mixBlendMode: "difference" }}
         />
       </div>
@@ -69,7 +57,8 @@ export default function Header(headerData: StrapiHeaderData) {
                 locale === "fr"
                   ? "text-[#ffffff] bg-[#253031]"
                   : "text-[#253031] bg-[#ffffff]"
-              )}>
+              )}
+            >
               fr
             </Link>
           </li>
@@ -81,7 +70,8 @@ export default function Header(headerData: StrapiHeaderData) {
                 locale === "en"
                   ? "text-[#ffffff] bg-[#253031]"
                   : "text-[#253031] bg-[#ffffff]"
-              )}>
+              )}
+            >
               en
             </Link>
           </li>

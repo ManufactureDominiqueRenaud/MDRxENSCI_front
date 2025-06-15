@@ -23,13 +23,14 @@ function ProjectsFolio({
   projects: StrapiProjectsListData;
   locale: string;
 }) {
-  const [projectList, setProjectList] = useState<StrapiProjectsListData>([])
+  const [projectList, setProjectList] = useState<StrapiProjectsListData>([]);
 
   useEffect(() => {
-  const projectsToMap : StrapiProjectsListData = [...projects].sort(() => Math.random() - 0.5);
-  setProjectList(projectsToMap)
-  }
-  , [projects])
+    const projectsToMap: StrapiProjectsListData = [...projects].sort(
+      () => Math.random() - 0.5
+    );
+    setProjectList(projectsToMap);
+  }, [projects]);
 
   return (
     <section
@@ -55,18 +56,10 @@ function ProjectsFolio({
               <div>
                 <div className="overflow-hidden rounded-3xl mt-8 lg:mt-0 group/project relative">
                   <Image
-                    width={
-                      project.attributes.thumbnail.data.attributes.width || 1920
-                    }
-                    height={
-                      project.attributes.thumbnail.data.attributes.height ||
-                      1080
-                    }
-                    src={project.attributes.thumbnail.data.attributes.url}
-                    alt={
-                      project.attributes.thumbnail.data.attributes
-                        .alternativeText || ""
-                    }
+                    width={project.thumbnail.width || 1920}
+                    height={project.thumbnail.height || 1080}
+                    src={project.thumbnail.url}
+                    alt={project.thumbnail.alternativeText || ""}
                     className="w-full h-[300px] object-cover group-hover/project:scale-105 group-hover/project:blur-sm transition-all duration-100"
                   />
                   <div className="flex flex-col items-center gap-2 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 opacity-0 group-hover/project:opacity-100 transition-all duration-100">
@@ -74,7 +67,7 @@ function ProjectsFolio({
                       className="transition-all duration-100 group/projectbutton"
                       asChild
                     >
-                      <Link href={`${locale}/${project.attributes.slug}`}>
+                      <Link href={`${locale}/${project.slug}`}>
                         {locale === "fr" ? (
                           <span className="text-sm font-bold">
                             Découvrir le projet
@@ -102,9 +95,9 @@ function ProjectsFolio({
                 </div>
               </div>
               <div className="flex items-center justify-between">
-                <Link href={`${locale}/${project.attributes.slug}`}>
+                <Link href={`${locale}/${project.slug}`}>
                   <p className="mt-4 font-bold hover:underline hover:opacity-90 hover:cursor-pointer inline-block">
-                    {project.attributes.projectTitle}
+                    {project.projectTitle}
                   </p>
                 </Link>
                 {/* <div className="flex gap-1 items-center mt-2">
@@ -119,7 +112,7 @@ function ProjectsFolio({
               </div>
               <div className="flex gap-2 justify-between mt-2">
                 <div className="flex gap-2">
-                  {project.attributes.studentList.map((student) => {
+                  {project.studentList.map((student) => {
                     return (
                       <p
                         key={student.id.toString() + student.name}

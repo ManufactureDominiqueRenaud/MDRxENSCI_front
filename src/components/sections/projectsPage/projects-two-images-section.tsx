@@ -5,16 +5,8 @@ import Image from "next/image";
 export type StrapiProjectTwoImagesSection = {
   __component: "projects-components.two-images-section";
   isGrayBackground: boolean;
-  image1: {
-    data: {
-      attributes: StrapiComponentImage;
-    };
-  };
-  image2: {
-    data: {
-      attributes: StrapiComponentImage;
-    };
-  };
+  image1: StrapiComponentImage;
+  image2: StrapiComponentImage;
 };
 
 function ProjectsTwoImagesSection({
@@ -33,19 +25,19 @@ function ProjectsTwoImagesSection({
     >
       <div className="lg:w-1/2 overflow-hidden rounded-3xl rounded-b-none lg:rounded-b-3xl lg:rounded-r-none">
         <Image
-          src={sectionData.image1.data.attributes.url || ""}
-          alt={sectionData.image1.data.attributes.alternativeText || ""}
-          width={sectionData.image1.data.attributes.width || 1920}
-          height={sectionData.image1.data.attributes.height || 1080}
+          src={sectionData.image1.url || ""}
+          alt={sectionData.image1.alternativeText || ""}
+          width={sectionData.image1.width || 1920}
+          height={sectionData.image1.height || 1080}
           className="w-full h-full object-cover"
         />
       </div>
       <div className="lg:w-1/2 overflow-hidden rounded-3xl rounded-t-none lg:rounded-t-3xl lg:rounded-tl-none lg:rounded-bl-none">
         <Image
-          src={sectionData.image2.data.attributes.url || ""}
-          alt={sectionData.image2.data.attributes.alternativeText || ""}
-          width={sectionData.image2.data.attributes.width || 1920}
-          height={sectionData.image2.data.attributes.height || 1080}
+          src={sectionData.image2.url || ""}
+          alt={sectionData.image2.alternativeText || ""}
+          width={sectionData.image2.width || 1920}
+          height={sectionData.image2.height || 1080}
           className="w-full h-full object-cover"
         />
       </div>

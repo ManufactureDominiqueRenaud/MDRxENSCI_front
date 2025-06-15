@@ -7,10 +7,10 @@ function AProposMDR(sectionData: { data: StrapiAProposMDR }) {
     <section className="py-[150px] lg:py-[192px] px-[20px] md:px-[70px] lg:px-[120px] lg:flex items-center gap-12">
       <div className="lg:w-1/2 overflow-hidden rounded-3xl">
         <Image
-          src={sectionData.data.image.data.attributes.url || ""}
-          alt={sectionData.data.image.data.attributes.alternativeText || ""}
-          width={sectionData.data.image.data.attributes.width || 1920}
-          height={sectionData.data.image.data.attributes.height || 1080}
+          src={sectionData.data.image.url || ""}
+          alt={sectionData.data.image.alternativeText || ""}
+          width={sectionData.data.image.width || 1920}
+          height={sectionData.data.image.height || 1080}
           className="w-full h-full object-cover"
         />
       </div>

@@ -44,29 +44,6 @@ type StrapiProjectContent = (
 export type StrapiProjectPageData = {
   data: {
     id: number;
-    attributes: {
-      slug: string;
-      projectTitle: string;
-      projectDesc: string;
-      voteForProjectCTA: string;
-      returnToProjectsCTA: string;
-      seeProjectCTA: string;
-      content: StrapiProjectContent;
-      studentList: {
-        id: number;
-        name: string;
-      }[];
-      thumbnail: {
-        data: {
-          attributes: StrapiComponentImage;
-        };
-      };
-    };
-  }[];
-};
-export type StrapiProjectsListData = {
-  id: number;
-  attributes: {
     slug: string;
     projectTitle: string;
     projectDesc: string;
@@ -78,12 +55,23 @@ export type StrapiProjectsListData = {
       id: number;
       name: string;
     }[];
-    thumbnail: {
-      data: {
-        attributes: StrapiComponentImage;
-      };
-    };
-  };
+    thumbnail: StrapiComponentImage;
+  }[];
+};
+export type StrapiProjectsListData = {
+  id: number;
+  slug: string;
+  projectTitle: string;
+  projectDesc: string;
+  voteForProjectCTA: string;
+  returnToProjectsCTA: string;
+  seeProjectCTA: string;
+  content: StrapiProjectContent;
+  studentList: {
+    id: number;
+    name: string;
+  }[];
+  thumbnail: StrapiComponentImage;
 }[];
 
 //PAGE
@@ -97,12 +85,12 @@ export default async function Page({ params }: any) {
   let projectData: StrapiProjectPageData;
   if (locale === "fr") {
     projectData = (await fetchStrapiData(
-      `api/projets?locale=${locale}&filters[slug][$eq]=${projectSlug}&populate[content][populate][image]=*&populate[content][populate][image1]=*&populate[content][populate][image2]=*&populate[content][populate][video]=*&populate[studentList]=*`,
+      `api/projets?locale=${locale}&filters[slug][$eq]=${projectSlug}&populate=*`,
       [`projects-data`]
     )) as StrapiProjectPageData;
   } else {
     projectData = (await fetchStrapiData(
-      `api/projets?locale=${locale}&filters[slug][$eq]=${projectSlug}&populate[content][populate][image]=*&populate[content][populate][image1]=*&populate[content][populate][image2]=*&populate[content][populate][video]=*&populate[studentList]=*`,
+      `api/projets?locale=${locale}&filters[slug][$eq]=${projectSlug}&populate=*`,
       [`projects-data`]
     )) as StrapiProjectPageData;
   }
@@ -113,7 +101,7 @@ export default async function Page({ params }: any) {
         <Button variant={"link"} asChild>
           <Link href={`/${locale}/#projects`} className="relative z-[60]">
             <LucideArrowLeft className="h-3 w-3" />
-            {projectData.data[0].attributes.returnToProjectsCTA}
+            {projectData.data[0].returnToProjectsCTA}
           </Link>
         </Button>
         {/* <Button variant={"default"} asChild>
@@ -129,7 +117,7 @@ export default async function Page({ params }: any) {
         )}
       >
         <div className="flex flex-col lg:flex-row items-center gap-4">
-          {projectData.data[0].attributes.studentList.map((student, index) => {
+          {projectData.data[0].studentList.map((student, index) => {
             return (
               <p
                 key={index}
@@ -141,26 +129,51 @@ export default async function Page({ params }: any) {
           })}
         </div>
         <h1 className="text-4xl lg:text-6xl font-bold text-center text-balance w-full md:w-2/3 marcellus-regular">
-          {projectData.data[0].attributes.projectTitle}
+          {projectData.data[0].projectTitle}
         </h1>
         <p className="lg:-2/3 text-center text-balance">
-          {projectData.data[0].attributes.projectDesc}
+          {projectData.data[0].projectDesc}
         </p>
       </section>
 
-      {projectData.data[0].attributes.content &&
-        projectData.data[0].attributes.content.map((item, index) => {
+      {projectData.data[0].content &&
+        projectData.data[0].content.map((item, index) => {
           switch (item.__component) {
             case "projects-components.image-and-text-section":
-              return <ProjectsImageAndTextSection sectionData={item} key={index + item.__component} />;
+              return (
+                <ProjectsImageAndTextSection
+                  sectionData={item}
+                  key={index + item.__component}
+                />
+              );
             case "projects-components.two-images-section":
-              return <ProjectsTwoImagesSection sectionData={item} key={index + item.__component} />;
+              return (
+                <ProjectsTwoImagesSection
+                  sectionData={item}
+                  key={index + item.__component}
+                />
+              );
             case "projects-components.text-section":
-              return <ProjectsTextSection sectionData={item} key={index + item.__component} />;
+              return (
+                <ProjectsTextSection
+                  sectionData={item}
+                  key={index + item.__component}
+                />
+              );
             case "projects-components.image-section":
-              return <ProjectsImageSection sectionData={item} key={index + item.__component} />;
+              return (
+                <ProjectsImageSection
+                  sectionData={item}
+                  key={index + item.__component}
+                />
+              );
             case "projects-components.video-section":
-              return <ProjectsVideoSection sectionData={item} key={index + item.__component} />;
+              return (
+                <ProjectsVideoSection
+                  sectionData={item}
+                  key={index + item.__component}
+                />
+              );
             default:
               return null;
           }
@@ -179,10 +192,10 @@ export default async function Page({ params }: any) {
           locale={locale}
         /> */}
         <h1 className="text-4xl lg:text-6xl font-bold text-center text-balance w-full md:w-2/3 marcellus-regular">
-          {projectData.data[0].attributes.projectTitle}
+          {projectData.data[0].projectTitle}
         </h1>
         <div className="flex flex-col lg:flex-row items-center gap-4">
-          {projectData.data[0].attributes.studentList.map((student, index) => {
+          {projectData.data[0].studentList.map((student, index) => {
             return (
               <p
                 key={index}
@@ -196,7 +209,7 @@ export default async function Page({ params }: any) {
         <Button variant={"link"} asChild>
           <Link href={`/${locale}/#projects`}>
             <LucideArrowLeft className="h-3 w-3" />
-            {projectData.data[0].attributes.returnToProjectsCTA}
+            {projectData.data[0].returnToProjectsCTA}
           </Link>
         </Button>
       </section>

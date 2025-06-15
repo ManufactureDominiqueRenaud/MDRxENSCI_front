@@ -11,11 +11,12 @@ export async function fetchStrapiData(endpoint: string, tags: string[]) {
         headers: {
           "Cache-Control":
             "public, max-age=345600, stale-while-revalidate=345600",
+          Authorization: `${process.env.STRAPI_API_TOKEN}`,
         },
       }
     );
-    if (!res.ok) throw new Error("Failed to fetch data");
     const data = await res.json();
+    if (!res.ok) throw new Error("Failed to fetch data");
     return data;
   } catch (error) {
     console.error(error);

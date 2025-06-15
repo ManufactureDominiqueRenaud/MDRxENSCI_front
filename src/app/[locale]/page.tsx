@@ -30,20 +30,18 @@ export const metadata: Metadata = {
 export type StrapiHomepageData = {
   data: {
     id: number;
-    attributes: {
-      title: string;
-      description: string;
-      slug: string;
-      sections: (
-        | StrapiHomepageHeroheader
-        | StrapiAtelierProjet
-        | StrapiCollaboration
-        | StrapiDominiqueCitation
-        | StrapiProjetsFolioSection
-        | StrapiCarouselHome
-        | StrapiAProposMDR
-      )[];
-    };
+    title: string;
+    description: string;
+    slug: string;
+    sections: (
+      | StrapiHomepageHeroheader
+      | StrapiAtelierProjet
+      | StrapiCollaboration
+      | StrapiDominiqueCitation
+      | StrapiProjetsFolioSection
+      | StrapiCarouselHome
+      | StrapiAProposMDR
+    )[];
   }[];
 };
 
@@ -57,7 +55,7 @@ export default async function Home({ params }: any) {
 
   if (locale === "fr") {
     pageData = (await fetchStrapiData(
-      `api/pages?filters[slug][$eq]=homepage-fr&locale=fr&populate[sections][populate][logo]=*&populate[sections][populate][cta]=*&populate[sections][populate][backgroundImage]=*&populate[sections][populate][image]=*&populate[sections][populate][carouselImages]=*`,
+      `api/pages?filters[slug][$eq]=homepage&populate=*&status=published&locale=fr`,
       [`homepage-fr`]
     )) as StrapiHomepageData;
     projectsData = await fetchStrapiData(`api/projets?locale=fr&populate=*`, [
@@ -65,14 +63,13 @@ export default async function Home({ params }: any) {
     ]);
   } else {
     pageData = (await fetchStrapiData(
-      `api/pages?filters[slug][$eq]=homepage-en&locale=en&populate[sections][populate][logo]=*&populate[sections][populate][cta]=*&populate[sections][populate][backgroundImage]=*&populate[sections][populate][image]=*&populate[sections][populate][carouselImages]=*`,
+      `api/pages?filters[slug][$eq]=homepage&populate=*&status=published&locale=en`,
       ["homepage-en"]
     )) as StrapiHomepageData;
     projectsData = await fetchStrapiData(`api/projets?locale=en&populate=*`, [
       `projects-en`,
     ]);
   }
-
   // let voteCounts: {
   //   projectSlug: string;
   //   voteCount: number;
@@ -95,8 +92,8 @@ export default async function Home({ params }: any) {
 
   return (
     <main>
-      {pageData.data[0].attributes.sections &&
-        pageData.data[0].attributes.sections.map((item, index) => {
+      {pageData.data[0].sections &&
+        pageData.data[0].sections.map((item, index) => {
           switch (item.__component) {
             case "sections-homepage.hero-header":
               return <HeroHeader data={item} key={index + item.__component} />;
@@ -104,11 +101,11 @@ export default async function Home({ params }: any) {
               return (
                 <AtelierProjet data={item} key={index + item.__component} />
               );
-            case "sections-homepage.collab-section":
+            case "sections-homepage.collaboration":
               return (
                 <Collaboration data={item} key={index + item.__component} />
               );
-            case "sections-homepage.dominique-renaud-section":
+            case "sections-homepage.dominique-renaud":
               return (
                 <DominiqueCitation data={item} key={index + item.__component} />
               );
@@ -122,7 +119,7 @@ export default async function Home({ params }: any) {
                   key={index + item.__component}
                 />
               );
-            case "sections-homepage.carousel-section":
+            case "sections-homepage.carousel":
               return (
                 <CarouselHome data={item} key={index + item.__component} />
               );

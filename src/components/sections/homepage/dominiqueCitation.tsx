@@ -16,10 +16,10 @@ function DominiqueCitation(sectionData: { data: StrapiDominiqueCitation }) {
       </div>
       <div className="lg:w-1/2 overflow-hidden rounded-3xl mt-8 lg:mt-0">
         <Image
-          src={sectionData.data.image.data.attributes.url || ""}
-          alt={sectionData.data.image.data.attributes.alternativeText || ""}
-          width={sectionData.data.image.data.attributes.width || 1920}
-          height={sectionData.data.image.data.attributes.height || 1080}
+          src={sectionData.data.image.url || ""}
+          alt={sectionData.data.image.alternativeText || ""}
+          width={sectionData.data.image.width || 1920}
+          height={sectionData.data.image.height || 1080}
           className="w-full h-full object-cover"
         />
       </div>

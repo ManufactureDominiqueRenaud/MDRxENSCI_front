@@ -24,18 +24,12 @@ export type StrapiComponentVideo = {
 //SECTIONS BLOCKS
 export type StrapiHomepageHeroheader = {
   __component: "sections-homepage.hero-header";
-  title: string;
-  logo: {
-    data: {
-      attributes: StrapiComponentImage;
-    };
-  };
-  cta: StrapiComponentLink;
-  backgroundImage: {
-    data: {
-      attributes: StrapiComponentImage;
-    };
-  };
+  slides: {
+    title: string;
+    logo: StrapiComponentImage;
+    cta: StrapiComponentLink;
+    backgroundImage: StrapiComponentImage;
+  }[];
 };
 export type StrapiAtelierProjet = {
   __component: "sections-homepage.atelier-projet";
@@ -43,47 +37,30 @@ export type StrapiAtelierProjet = {
   paragraph: string;
 };
 export type StrapiCollaboration = {
-  __component: "sections-homepage.collab-section";
-  logo: {
-    data: {
-      attributes: StrapiComponentImage;
-    };
-  };
+  __component: "sections-homepage.collaboration";
+  logo: StrapiComponentImage;
   title: string;
-  labelCtaDownloadPressArticle: string;
-  pdfUrl: string;
-  cta: StrapiComponentLink;
+  ctaEnsci: StrapiComponentLink;
+  ctaPress: StrapiComponentLink;
 };
 export type StrapiDominiqueCitation = {
-  __component: "sections-homepage.dominique-renaud-section";
+  __component: "sections-homepage.dominique-renaud";
   citation: string;
   name: string;
   paragraph: string;
-  image: {
-    data: {
-      attributes: StrapiComponentImage;
-    };
-  };
+  image: StrapiComponentImage;
 };
 export type StrapiCarouselHome = {
-  __component: "sections-homepage.carousel-section";
+  __component: "sections-homepage.carousel";
   title: string;
-  carouselImages: {
-    data: {
-      id: number;
-      attributes: StrapiComponentImage;
-    }[];
-  };
+  id: number;
+  carouselImages: StrapiComponentImage[];
 };
 export type StrapiAProposMDR = {
   __component: "sections-homepage.mdr-details";
   title: string;
   paragraph: string;
-  image: {
-    data: {
-      attributes: StrapiComponentImage;
-    };
-  };
+  image: StrapiComponentImage;
 };
 export type StrapiProjetsFolioSection = {
   __component: "sections-homepage.project-folio";

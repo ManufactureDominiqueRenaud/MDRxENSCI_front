@@ -5,11 +5,7 @@ import Image from "next/image";
 export type StrapiProjectVideoSection = {
   __component: "projects-components.video-section";
   isGrayBackground: boolean;
-  video: {
-    data: {
-      attributes: StrapiComponentVideo;
-    };
-  };
+  video: StrapiComponentVideo;
 };
 
 function ProjectsVideoSection({
@@ -33,10 +29,7 @@ function ProjectsVideoSection({
           controls
           className="w-full h-full object-cover"
         >
-          <source
-            src={sectionData.video.data.attributes.url}
-            type="video/mp4"
-          />
+          <source src={sectionData.video.url} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>

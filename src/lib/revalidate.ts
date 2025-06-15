@@ -7,8 +7,7 @@ export async function getAllProjectSlugs() {
   ]);
   const projectSlugs = [] as string[];
   data.data.forEach((item: any) => {
-    projectSlugs.push(item.attributes.slug);
-    console.log(item.attributes.slug);
+    projectSlugs.push(item.slug);
   });
   return projectSlugs;
 }

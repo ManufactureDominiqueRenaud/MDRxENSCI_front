@@ -10,11 +10,7 @@ export type StrapiProjectImageAndTextSection = {
   paragraph3: string;
   isImageOnLeft: boolean;
   isGrayBackground: boolean;
-  image: {
-    data: {
-      attributes: StrapiComponentImage;
-    };
-  };
+  image: StrapiComponentImage;
 };
 
 function ProjectsImageAndTextSection({
@@ -34,10 +30,10 @@ function ProjectsImageAndTextSection({
     >
       <div className="lg:w-1/2 overflow-hidden rounded-3xl">
         <Image
-          src={sectionData.image.data.attributes.url || ""}
-          alt={sectionData.image.data.attributes.alternativeText || ""}
-          width={sectionData.image.data.attributes.width || 1920}
-          height={sectionData.image.data.attributes.height || 1080}
+          src={sectionData.image.url || ""}
+          alt={sectionData.image.alternativeText || ""}
+          width={sectionData.image.width || 1920}
+          height={sectionData.image.height || 1080}
           className="w-full h-full object-cover"
         />
       </div>
